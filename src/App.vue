@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-    <keep-alive>
-      <router-view/>
-    </keep-alive>
+      <keep-alive exclude="Promotion">
+        <router-view id="main-page-routerview" />
+      </keep-alive>
     <div class="main-tab-bar">
       <MainTabBar/>
     </div>
@@ -18,10 +18,15 @@ export default {
 
 <style>
 @import "assets/css/base.css";
-
+#app{
+  height: 100vh;
+}
 .main-tab-bar {
   position: absolute;
   z-index: 9;
   height: 200px;
+}
+#main-page-routerview{
+  height: calc(100% - 100px);
 }
 </style>
