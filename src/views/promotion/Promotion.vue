@@ -8,12 +8,9 @@
 <script>
 export default {
   name: "Promotion",
-  beforeRouteEnter(to, from, next) {
-    //console.log(to)
-    next()
-  },
   created() {
-    if (!this.$store.state.idAuthenticate){
+    console.log(!this.$store.state.idAuthenticate);
+    if (!this.$store.state.idAuthenticate) {
       this.$router.push('/promotion/register')
     }
   }

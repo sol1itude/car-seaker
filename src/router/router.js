@@ -25,14 +25,14 @@ const routes = [
   {
     path: '/promotion',
     name: 'Promotion',
+    component: Promotion,
     children: [
       {
         path: 'register',
         name: 'PromotionRegister',
         component: () => import('views/promotion/childComps/PromotionRegister')
       }
-    ],
-    component: Promotion
+    ]
   },
   {
     path: '/profile',
@@ -48,7 +48,6 @@ const router = new VueRouter({
 
 //判断登录状态，携带
 router.beforeEach((to,from,next)=>{
-  console.log(to)
   next()
 })
 
