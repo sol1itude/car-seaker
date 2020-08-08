@@ -3,6 +3,10 @@ import Vue
 import VueRouter
   from 'vue-router'
 
+import {judgeUserAgent} from 'common/constUtils'
+import constUrls
+  from "@/common/constUrls";
+
 Vue.use(VueRouter)
 
 const Home = () => import('views/home/Home');
@@ -10,7 +14,9 @@ const Promotion = () => import('views/promotion/Promotion');
 const Order = () => import('views/order/Order');
 const Profile = () => import('views/profile/Profile');
 const PromotionRegister = () => import('views/promotion/childComps/PromotionRegister');
-const PromotionManagePage = ()=> import('views/promotion/childComps/PromotionManagePage')
+const PromotionManagePage = () => import('views/promotion/childComps/PromotionManagePage');
+const CashOutPage = () => import('views/promotion/childComps/CashOutPage');
+
 const routes = [
   {
     path: '',
@@ -19,33 +25,59 @@ const routes = [
   {
     path: '/home',
     name: 'Home',
+    meta: {
+      title: '首页'
+    },
     component: Home
   },
   {
     path: '/order',
     name: 'Order',
+    meta: {
+      title: '订单'
+    },
     component: Order
   },
   {
     path: '/promotion',
     name: 'Promotion',
+    meta: {
+      title: '推广'
+    },
     component: Promotion,
     children: [
       {
         path: 'register',
         name: 'PromotionRegister',
+        meta: {
+          title: '推广注册'
+        },
         component: PromotionRegister
       },
       {
-        path:'manage',
-        name:'PromotionManagePage',
-        component:PromotionManagePage
+        path: 'manage',
+        name: 'PromotionManagePage',
+        meta: {
+          title: '推广管理'
+        },
+        component: PromotionManagePage
+      },
+      {
+        path:'cashout',
+        name:'CashOutPage',
+        meta:{
+          title:'余额提现'
+        },
+        component:CashOutPage
       }
     ]
   },
   {
     path: '/profile',
     name: 'Profile',
+    meta: {
+      title: '我的'
+    },
     component: Profile
   }
 ]
@@ -57,6 +89,15 @@ const router = new VueRouter({
 
 //判断登录状态，携带
 router.beforeEach((to, from, next) => {
+  document.title = to.meta.title;
+  // TODO 判断是否微信浏览器(发布后放开)
+  // let ua = judgeUserAgent();
+  // if (!ua) {
+  //   window.location = constUrls.NOT_MICRO_MESSAGE_URL;
+  //   return;
+  // } else {
+  //   next()
+  // }
   next()
 })
 

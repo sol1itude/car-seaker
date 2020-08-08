@@ -29,7 +29,7 @@ export default {
   methods: {
     itemClick() {
       if (!this.isActive) {
-        this.$router.push(this.path);
+        this.$router.replace(this.path);
       }
     }
   },
@@ -50,15 +50,15 @@ export default {
 .tab-bar-item {
   flex: 1;
   text-align: center;
-  height: 100px;
-  font-size: 20px;
+  height: 60px;
+  font-size: 12px;
   padding-top: 3px;
   border-radius: 10px;
 }
 
 .tab-bar-item img {
-  height: 40px;
-  width: 40px;
+  height: 20px;
+  width: 20px;
   margin-top: 10px;
   margin-bottom: 10px;
   vertical-align: middle;

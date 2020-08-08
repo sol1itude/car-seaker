@@ -1,6 +1,6 @@
 <template>
   <div id="promotion">
-    <router-view/>
+    <router-view />
     <br>
     <br>
     <br>
@@ -13,13 +13,24 @@ export default {
   name: "Promotion",
   created() {
     console.log(!this.$store.state.idAuthenticate);
-    if (!this.$store.state.promotionRegistered){
-      this.$router.push('/promotion/register')
+    // if (!this.$store.state.promotionRegistered){
+    //   this.$router.replace('/promotion/register')
+    // }else {
+    //   this.$router.replace('/promotion/manage')
+    // }
+    if(!confirm('是否注册过？')){
+        this.$router.replace('/promotion/register')
     }else {
-      this.$router.push('/promotion/manage')
+      this.$router.replace('/promotion/manage')
     }
 
-  }
+  },
+  methods:{
+    hello(val){
+      console.log(val)
+    }
+  },
+
 }
 </script>
 

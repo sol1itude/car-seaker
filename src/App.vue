@@ -1,7 +1,7 @@
 <template>
   <div id="app">
       <keep-alive exclude="Promotion">
-        <router-view id="main-page-routerview" />
+        <router-view id="main-page-routerview"/>
       </keep-alive>
     <div class="main-tab-bar">
       <MainTabBar/>
@@ -12,7 +12,9 @@
 import MainTabBar from "components/content/mainTabbar/MainTabBar";
 
 export default {
-  components: {MainTabBar}
+  components: {MainTabBar},
+  mounted() {
+  }
 }
 </script>
 
@@ -27,6 +29,6 @@ export default {
   height: 200px;
 }
 #main-page-routerview{
-  height: calc(100% - 100px);
+  height: calc(100% - 60px);
 }
 </style>
