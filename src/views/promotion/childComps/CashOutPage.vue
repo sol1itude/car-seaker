@@ -11,7 +11,7 @@
             alt="提现">
         <div style="display: inline-block;vertical-align: 20px;margin-left: 12px;font-size: 14px"><span style="color: black;margin-right: 5px">提现金额</span> (5元起提，随时提现)</div>
       </div>
-      <input v-model="cashOutNum" type="text" style="height: 30px;width: 65%;border: none" placeholder="请输入提现金额">
+      <input @blur="rollTop" v-model="cashOutNum" type="text" style="height: 30px;width: 65%;border: none" placeholder="请输入提现金额">
     </div>
     <div class="cash-out-select-container">
       <div style="border-bottom: 1px solid #e2e1e1">
@@ -47,7 +47,7 @@
     </div>
       <div v-if="cashOutType==='ali'" class="remember-ali-account">
         <div style="height: 100%;width: 100%;display: inline-block">
-          <input v-model="aliAccount"
+          <input v-model="aliAccount" @blur="rollTop"
               type="text" placeholder="输入支付宝账号" style="border:none;height: 100%;font-size: 14px;width: 60%">
           <img @click="rememberAliAccount=!rememberAliAccount" style="margin-left: 5px;height: 18px;width: 18px"
               :src="rememberAliSelect"
@@ -74,6 +74,9 @@ export default {
     }
   },
   methods:{
+    rollTop(){
+      window.scrollTo(0,0)
+    },
     CashOutTypeImg(val){
       return val===this.cashOutType? require('assets/img/common/radio_selected.png'): require('assets/img/common/radio.png')
     },
