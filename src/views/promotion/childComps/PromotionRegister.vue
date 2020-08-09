@@ -43,7 +43,7 @@
             placeholder="请输入验证码">
         <div
             @click="getVcodeMethod"
-            style="color: #716dff;display: inline-block;margin-left: 10px">
+            style="color: #716dff;display: inline-block;margin-left: 15px">
           {{getVcode}}
         </div>
       </div>
@@ -76,7 +76,7 @@ export default {
     }
   },
   methods: {
-    
+
     makeCall() {
       console.log('打电话')
     },

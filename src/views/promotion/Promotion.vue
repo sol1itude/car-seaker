@@ -12,7 +12,7 @@
 export default {
   name: "Promotion",
   created() {
-    console.log(!this.$store.state.idAuthenticate);
+    console.log('注册过推广？',!this.$store.state.idAuthenticate);
     // if (!this.$store.state.promotionRegistered){
     //   this.$router.replace('/promotion/register')
     // }else {
