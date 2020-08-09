@@ -126,13 +126,17 @@ export default {
     judgeAliAccount() {
       return this.cashOutType === 'wx' ? true : (this.aliAccount.trim() !== '')
     },
-    judegCash() {
+    judgeCash() {
       return this.isANumber(this.cashOutNum) && (parseFloat(this.cashOutNum) >= 5.0);
     },
     cashOutNow() {
       //TODO 判断提现金额
-      if (!this.judegCash()) {
+      if (!this.judgeCash()) {
         alert('请输入正确的提现金额');
+        return;
+      }
+      if (this.cashOutNum > this.balance) {
+        alert('可用余额不足');
         return;
       }
 
@@ -145,11 +149,11 @@ export default {
       }
     },
     //发送提现请求
-    realCashOut(){
-      if (confirm('提现成功，预计30分钟内到账\n返回管理页吗？')){
+    realCashOut() {
+      if (confirm('提现成功，预计30分钟内到账\n返回管理页吗？')) {
         this.$router.replace('/promotion/manage')
-      }else {
-        this.cashOutNum=''
+      } else {
+        this.cashOutNum = ''
         //do nothing
       }
     }
