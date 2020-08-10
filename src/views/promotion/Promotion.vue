@@ -1,10 +1,6 @@
 <template>
   <div id="promotion">
     <router-view />
-    <br>
-    <br>
-    <br>
-    <br>
   </div>
 </template>
 
