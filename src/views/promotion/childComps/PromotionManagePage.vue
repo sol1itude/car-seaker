@@ -110,7 +110,7 @@ export default {
   position: absolute;
   top: 35px;
   left: 20px;
-  height: 45px;
+  height: 44px;
   width: calc(100% - 40px);
 }
 

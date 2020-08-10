@@ -79,13 +79,13 @@ export default {
   line-height: 45px;
   position: relative;
   padding-right: 12px;
-  font-size: 15px;
+  font-size: 14px;
 }
 
 .to-cash-out-container img {
   display: inline-block;
   position: relative;
-  top: 3px;
+  top: 2px;
   height: 16px;
 }
 </style>

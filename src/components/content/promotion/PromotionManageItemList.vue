@@ -41,6 +41,10 @@ export default {
   
 }
 
+.text{
+  font-size: 14px;
+}
+
 .promotion-manage-select > div {
   display: inline-block;
   vertical-align: middle;
@@ -50,8 +54,8 @@ export default {
 }
 
 .promotion-manage-select > .image > img {
-  height: 30px;
-  margin-top: 5px;
+  height: 20px;
+  margin-top: 10px;
   margin-left: 15px;
 }
 
