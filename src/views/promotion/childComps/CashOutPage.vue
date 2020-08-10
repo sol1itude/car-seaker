@@ -282,7 +282,7 @@ export default {
 .cash-out-select-flag > img {
   width: 20px;
   height: 20px;
-  vertical-align: -5px;
+  vertical-align: -3px;
 }
 
 .cash-out-select-flag {
@@ -301,6 +301,7 @@ export default {
 }
 .ali-account-container>div{
   display: inline-block;
+  height: 100%;
 }
 
 
@@ -311,22 +312,26 @@ export default {
 .ali-account-container>div:nth-child(1){
   margin-left: 20px;
   width: calc(100% - 140px);
+  height: calc(100% - 2px);
+  margin-top: -5px;
 }
 .ali-account-container>div:nth-child(2){
-  width: 20px;
+  width: 14px;
   height: 100%;
   position: absolute;
-  right: 88px;
+  right: 80px;
+  top: -4px;
 }
 .ali-account-container>div:nth-child(3){
   height: 100%;
   position: absolute;
   right: 20px;
+  top:-1px;
+  font-size: 14px;
 }
 
 .ali-account-container>div:nth-child(1)>input{
   width: 100%;
-  height: 100%;
   font-size: 14px;
   color: #333;
   border: none;

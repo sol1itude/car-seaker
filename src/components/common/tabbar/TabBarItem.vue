@@ -53,7 +53,6 @@ export default {
   height: 60px;
   font-size: 10px;
   /*padding-top: 3px;*/
-  border-radius: 10px;
   background: white;
 }
 

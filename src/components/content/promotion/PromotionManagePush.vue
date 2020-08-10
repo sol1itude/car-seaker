@@ -72,5 +72,10 @@ export default {
 }
 .promotion-manage-type{
   margin-top: 20px;
+  height: 90px;
+}
+
+.promotion-manage-type>div:nth-child(1){
+  height: 44px;
 }
 </style>

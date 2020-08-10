@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background: #F8F8F8">
     我的
   </div>
 </template>

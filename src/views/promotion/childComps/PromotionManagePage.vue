@@ -108,7 +108,7 @@ export default {
 
 .title-container {
   position: absolute;
-  top: 35px;
+  top: 30px;
   left: 20px;
   height: 44px;
   width: calc(100% - 40px);
@@ -120,7 +120,7 @@ export default {
   left: 20px;
   background: white;
   border-radius: 4px;
-  top: 100px;
+  top: 104px;
 }
 
 .promotion-display-container {

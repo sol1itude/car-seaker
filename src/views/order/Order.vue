@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="background: #F8F8F8">
     订单
   </div>
 </template>
