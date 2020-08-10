@@ -16,7 +16,7 @@
                                :arrow="require('assets/img/common/arrow_right_gray.png')"/>
       <PromotionManageItemList @click.native="showMessage('提现记录')"
                                :image="require('assets/img/promotion/manage/cash_out_record.png')"
-                               :text="'收益记录'"
+                               :text="'提现记录'"
                                :arrow="require('assets/img/common/arrow_right_gray.png')"/>
       <PromotionManageItemList @click.native="showMessage('推广规则')"
                                :image="require('assets/img/promotion/manage/promotion_rules.png')"
