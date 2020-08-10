@@ -8,6 +8,7 @@
     <div class="push-container">
       <PromotionManagePush @emitToast="emitToast"></PromotionManagePush>
     </div>
+    
     <!--其他信息选择-->
     <div class="promotion-display-container">
       <PromotionManageItemList @click.native="showMessage('收益记录')"
