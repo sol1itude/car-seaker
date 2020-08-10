@@ -1,57 +1,30 @@
 <template>
   <div class="promotion-manage" @touchmove.prevent>
+    <!--顶部显示余额模块-->
     <div class="title-container">
       <PromotionTitle @toCashOutPage="toCashOutPage"></PromotionTitle>
     </div>
+    <!--获取推广展示-->
     <div class="push-container">
       <PromotionManagePush @emitToast="emitToast"></PromotionManagePush>
     </div>
-<!--    <div class="promotion-manage-middle">-->
-<!--      <div class="promotion-manage-middle-promotion">-->
-<!--        <div @click="toastIndex=1" class="promotion-manage-type">-->
-<!--          <div>-->
-<!--            <img style="width: 45px" src="~assets/img/promotion/manage/promotion_qrcode.png" alt="hello">-->
-<!--          </div>-->
-<!--          <div class="promotion-manage-top-text">-->
-<!--            推广二维码-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div class="promotion-manage-type">-->
-<!--          <div>-->
-<!--            <img style="width: 45px" src="~assets/img/promotion/manage/promotion_poster.png" alt="hello">-->
-<!--          </div>-->
-<!--          <div class="promotion-manage-top-text">-->
-<!--            推广海报-->
-<!--          </div>-->
-<!--        </div>-->
-<!--        <div @click="toastIndex=3"-->
-<!--             class="promotion-manage-type">-->
-<!--          <div>-->
-<!--            <img style="width: 45px" src="~assets/img/promotion/manage/promotion_link.png" alt="hello">-->
-<!--          </div>-->
-<!--          <div class="promotion-manage-top-text">-->
-<!--            推广链接-->
-<!--          </div>-->
-<!--        </div>-->
-<!--      </div>-->
-      
-<!--      <PromotionManagePush ></PromotionManagePush>-->
-  
-      
-      
-<div class="promotion-display-container">
-  <PromotionManageItemList @click.native="showMessage('收益记录')" :image="require('assets/img/promotion/manage/profit_record.png')"
-                           :text="'收益记录'"
-                           :arrow="require('assets/img/common/arrow_right_gray.png')" />
-  <PromotionManageItemList @click.native="showMessage('提现记录')" :image="require('assets/img/promotion/manage/cash_out_record.png')"
-                           :text="'收益记录'"
-                           :arrow="require('assets/img/common/arrow_right_gray.png')" />
-  <PromotionManageItemList @click.native="showMessage('推广规则')" :image="require('assets/img/promotion/manage/promotion_rules.png')"
-                           :text="'推广规则'"
-                           :arrow="require('assets/img/common/arrow_right_gray.png')" />
-</div>
-        
-<!--    </div>-->
+    <!--其他信息选择-->
+    <div class="promotion-display-container">
+      <PromotionManageItemList @click.native="showMessage('收益记录')"
+                               :image="require('assets/img/promotion/manage/profit_record.png')"
+                               :text="'收益记录'"
+                               :arrow="require('assets/img/common/arrow_right_gray.png')"/>
+      <PromotionManageItemList @click.native="showMessage('提现记录')"
+                               :image="require('assets/img/promotion/manage/cash_out_record.png')"
+                               :text="'收益记录'"
+                               :arrow="require('assets/img/common/arrow_right_gray.png')"/>
+      <PromotionManageItemList @click.native="showMessage('推广规则')"
+                               :image="require('assets/img/promotion/manage/promotion_rules.png')"
+                               :text="'推广规则'"
+                               :arrow="require('assets/img/common/arrow_right_gray.png')"/>
+    </div>
+    
+    <!--显示信息的toast-->
     <Toast v-if="toastIndex===1" @toastClicked="toastClicked">
       <div @click.stop>
         <img style="width: calc(100% - 30px)"
@@ -105,8 +78,8 @@ export default {
     toastClicked() {
       this.toastIndex = 999
     },
-    emitToast(val){
-      this.toastIndex=val
+    emitToast(val) {
+      this.toastIndex = val
     },
     copyPromotionLink() {
       this.$copyText(this.promotionUrl)
@@ -131,7 +104,8 @@ export default {
   height: 100vh;
   text-align: center;
 }
-.title-container{
+
+.title-container {
   position: absolute;
   top: 35px;
   left: 20px;
@@ -139,7 +113,7 @@ export default {
   width: calc(100% - 40px);
 }
 
-.push-container{
+.push-container {
   position: absolute;
   width: calc(100% - 40px);
   left: 20px;
@@ -148,7 +122,7 @@ export default {
   top: 100px;
 }
 
-.promotion-display-container{
+.promotion-display-container {
   position: absolute;
   width: calc(100% - 40px);
   left: 20px;

@@ -1,11 +1,9 @@
 <template>
-  <div
-      class="cash-out-page"
-      @touchmove.prevent>
+  <div class="cash-out-page" @touchmove.prevent>
     <div
         class="cash-out-page-top">
       <div>
-        {{balance.toFixed(2)}}
+        {{ balance.toFixed(2) }}
       </div>
       <div>
         可提金额(元)
@@ -62,10 +60,7 @@
           支付宝提现
         </div>
         <div>
-          <img
-
-              :src="CashOutTypeImg('ali')"
-              alt="">
+          <img :src="CashOutTypeImg('ali')" alt="">
         </div>
       </div>
       <div
@@ -73,12 +68,8 @@
           class="remember-ali-account">
         <div
             style="height: 100%;width: 100%;display: inline-block">
-          <input
-              v-model="aliAccount"
-              @blur="rollTop"
-              type="text"
-              placeholder="输入支付宝账号"
-              style="border:none;height: 100%;font-size: 14px;width: 60%">
+          <input v-model="aliAccount" @blur="rollTop" type="text" placeholder="输入支付宝账号"
+                 style="border:none;height: 100%;font-size: 14px;width: 60%">
           <img
               @click="rememberAliAccount=!rememberAliAccount"
               style="margin-left: 5px;height: 18px;width: 18px"
@@ -139,7 +130,7 @@ export default {
         alert('可用余额不足');
         return;
       }
-
+      
       if (this.judgeAliAccount()) {
         alert('真的要用 ' + this.cashOutType + ' 提现' + this.cashOutNum + '吗？')
         //执行提现操作
@@ -193,7 +184,7 @@ export default {
 
 .cash-out-page-top > div:nth-child(1) {
   font-size: 28px;
-
+  
 }
 
 .cash-out-page-top > div:nth-child(2) {
@@ -255,7 +246,7 @@ export default {
 
 
 #cash-out-now-btn {
-
+  
   margin-top: 40px;
   background: #716dff;
   height: 52px;
@@ -263,7 +254,7 @@ export default {
   border-radius: 8px;
   color: white;
   margin-left: calc(50% - 115px);
-
+  
 }
 
 .remember-ali-account {
