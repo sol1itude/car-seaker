@@ -245,6 +245,7 @@ export default {
 
 .cash-input-container>input{
   height:calc(100% + 3px);
+  width: calc(100% - 40px);
   border: none;
   color: #333;
 }

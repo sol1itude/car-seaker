@@ -85,7 +85,7 @@ export default {
 .to-cash-out-container img {
   display: inline-block;
   position: relative;
-  top: 2px;
+  top: 3px;
   height: 16px;
 }
 </style>
