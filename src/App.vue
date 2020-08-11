@@ -24,11 +24,13 @@ export default {
   height: 100vh;
 }
 .main-tab-bar {
-  position: absolute;
   z-index: 9;
-  height: 200px;
+  height: 55px;
+  width: 100%;
+  bottom: 0px;
+  position: fixed;
 }
 #main-page-routerview{
-  height: calc(100% - 60px);
+  height: calc(100% - 49px);
 }
 </style>
