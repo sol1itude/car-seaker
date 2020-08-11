@@ -136,7 +136,7 @@ export default {
         return;
       }
       if (this.cashOutNum > this.balance) {
-        alert('可用余额不足');
+        alert('余额不足');
         return;
       }
 
