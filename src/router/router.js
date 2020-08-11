@@ -93,7 +93,7 @@ const routes = [
         path:'promotionpost',
         name:'PromotionPost',
         meta:{
-          title:'提现记录'
+          title:'推广海报'
         },
         component:PromotionPost
       }

@@ -1,8 +1,7 @@
 <template>
-  <div>
-    提现记录
-    <button @click="buttonClick">日期</button>
-    <input ref="monthSelect" class="month-select-box" type="month" name="hello" id="">
+  <div style="position: relative">
+    <input @change="alert('hello')" ref="monthSelect" class="month-select-box" type="month" name="hello" id="">
+    <div class="month-select-box">2020/08</div>
   </div>
 </template>
 
@@ -21,5 +20,16 @@ export default {
 <style scoped>
 .month-select-box {
   color: red;
+  position: absolute;
+  width: 120px;
+  height: 30px;
+  border: none;
+  background: white;
+}
+input.month-select-box{
+  z-index: 9;
+  color: transparent;
+  background: transparent;
+
 }
 </style>
