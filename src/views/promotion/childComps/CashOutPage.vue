@@ -25,11 +25,11 @@
             (5元起提，随时提现)
           </div>
         </div>
-        <div  class="cash-input-container">
-          <input @blur="rollTop" v-model="cashOutNum" type="text" placeholder="请输入提现金额">
+        <div class="cash-input-container">
+          <input @blur="rollTop"  v-model="cashOutNum" type="text" placeholder="请输入提现金额">
         </div>
       </div>
-      
+    
     </div>
     <div class="cash-out-type-select-container">
       <div class="cash-out-select">
@@ -48,7 +48,8 @@
           <div class="cash-out-select-flag"><img :src="CashOutTypeImg('ali')" alt=""></div>
         </div>
         <div class="ali-account-container" v-show="cashOutType=='ali'" style="border-top: 1px solid #ddd">
-          <div><input ref="aliAccountInput" v-model="aliAccount" @blur="rollTop" placeholder="请输入支付宝账号" type="text"></div>
+          <div><input ref="aliAccountInput" v-model="aliAccount" @blur="rollTop" placeholder="请输入支付宝账号" type="text">
+          </div>
           <div>
             <img
                 @click="rememberAliAccount=!rememberAliAccount"
@@ -59,12 +60,15 @@
         </div>
       </div>
     </div>
-
+    
     <div
         @click="cashOutNow"
         id="cash-out-now-btn"
         style="width: 240px">
       立即提现
+    </div>
+    <div v-if="wrongCashOutNum" class="single-message-container">
+      <SingleLineMessageToast>{{ singleMessage }}</SingleLineMessageToast>
     </div>
   </div>
 </template>
@@ -73,9 +77,11 @@
 import CashOutTitle from "@/components/content/cashout/CashOutTitle";
 import CashOutInput from "@/components/content/cashout/CashOutInput";
 import CashOutSelect from "@/components/content/cashout/CashOutSelect";
+import SingleLineMessageToast from "@/components/common/messageToast/SingleLineMessageToast";
+
 export default {
   name: "CashOutPage",
-  components: {CashOutSelect, CashOutInput, CashOutTitle},
+  components: {SingleLineMessageToast, CashOutSelect, CashOutInput, CashOutTitle},
   data() {
     return {
       balance: 480,
@@ -83,7 +89,9 @@ export default {
       aliAccount: '',
       cashOutNum: '',
       te: '~assets/img/promotion/cashout/alipay.png',
-      rememberAliAccount: false
+      rememberAliAccount: false,
+      wrongCashOutNum: false
+      
     }
   },
   methods: {
@@ -95,19 +103,27 @@ export default {
       return val === this.cashOutType ? require('assets/img/common/radio_selected.png') : require('assets/img/common/radio.png')
     },
     rollTop() {
-      window.scrollTo(0, 0)
+      if (this.judgeCash()) {
+        window.scrollTo(0, 0)
+      }
     },
     
     judgeAliAccount() {
       return this.cashOutType === 'wx' ? true : (this.aliAccount.trim() !== '')
     },
     judgeCash() {
-      return this.isANumber(this.cashOutNum) && (parseFloat(this.cashOutNum) >= 5.0);
+      let result = this.isANumber(this.cashOutNum) && (parseFloat(this.cashOutNum) >= 5.0) && (parseFloat(this.cashOutNum) <= 100.0)&&(parseFloat(this.cashOutNum) <= this.balance);
+      this.wrongCashOutNum = !result;
+      if (this.wrongCashOutNum){
+        setTimeout(()=>{
+          this.wrongCashOutNum=false
+        },2000)
+      }
+      return result;
     },
     cashOutNow() {
       //TODO 判断提现金额
       if (!this.judgeCash()) {
-        alert('请输入正确的提现金额');
         return;
       }
       if (this.cashOutNum > this.balance) {
@@ -116,7 +132,7 @@ export default {
       }
       
       if (this.judgeAliAccount()) {
-        alert('真的要用 ' + this.cashOutType + ' 提现' + this.cashOutNum + '吗？')
+        //alert('真的要用 ' + this.cashOutType + ' 提现' + this.cashOutNum + '吗？')
         //执行提现操作
         this.realCashOut();
       } else {
@@ -125,20 +141,39 @@ export default {
     },
     //发送提现请求
     realCashOut() {
-      if (confirm('提现成功，预计30分钟内到账\n返回管理页吗？')) {
-        this.$router.replace('/promotion/manage')
-      } else {
-        this.cashOutNum = ''
-        //do nothing
-      }
+      //1.发送请求
+      //2.判断结果
+      setTimeout(()=>{
+        this.$router.replace('/promotion/cashoutsuccess')
+      },1000)
     }
   },
   computed: {
     rememberAliSelect() {
       return this.rememberAliAccount ? require('assets/img/common/checkbox_selected.png') : require('assets/img/common/checkbox.png')
+    },
+    singleMessage() {
+      if (!this.isANumber(this.cashOutNum)){
+        return '请输入正确金额'
+      }
+
+      if (this.cashOutNum<5){
+        return '提现金额不小于5元'
+      }
+      if (parseFloat(this.cashOutNum)>this.balance){
+        return '余额不足'
+      }
+      if (this.cashOutNum>100){
+        return '单笔金额不超过100元'
+      }
+      return '请输入正确金额'
+      //return this.cashOutNum > 100 ? '单笔金额不超过100元' : (this.cashOutNum < 5 ? '提现金额不小于5元' : '请输入正确金额')
     }
   },
-  watch:{
+  watch: {
+    wrongCashOutNum(val) {
+      console.log(val)
+    }
   }
 }
 </script>
@@ -149,17 +184,19 @@ export default {
   background: #f8f8f8 url("~assets/img/promotion/cashout/cash_out_background.png") no-repeat fixed top;
   background-size: 100%;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 10;
   text-align: center;
 }
 
-.title-container{
+.title-container {
   position: relative;
   top: 30px;
   height: 57px;
 }
 
-.cash-out-input-container{
+.cash-out-input-container {
   position: relative;
   width: calc(100% - 40px);
   top: 60px;
@@ -169,7 +206,7 @@ export default {
   background: white;
 }
 
-.cash-out-type-select-container{
+.cash-out-type-select-container {
   position: relative;
   top: 80px;
   left: 20px;
@@ -182,13 +219,14 @@ export default {
 
 
 /*顶部显示设置*/
-.cash-out-page-top>.balance-display{
+.cash-out-page-top > .balance-display {
   font-size: 28px;
   line-height: 28px;
   font-weight: bold;
   color: #fff;
 }
-.cash-out-page-top>.info-display{
+
+.cash-out-page-top > .info-display {
   margin-top: 12px;
   font-size: 17px;
   font-weight: bold;
@@ -201,13 +239,15 @@ export default {
   width: 100%;
   height: 100%;
 }
-.info-container{
+
+.info-container {
   height: 20px;
   position: relative;
   top: 20px;
   text-align: left;
 }
-.info-container img{
+
+.info-container img {
   height: 100%;
 }
 
@@ -220,6 +260,7 @@ export default {
 .info-container > div:nth-child(1) {
   margin-left: 20px;
 }
+
 .info-container > div:nth-child(2) {
   height: 100%;
   margin-left: 12px;
@@ -235,7 +276,8 @@ export default {
   font-size: 14px;
   color: #999;
 }
-.cash-input-container{
+
+.cash-input-container {
   position: relative;
   top: 40px;
   height: calc(100% - 67px);
@@ -245,13 +287,14 @@ export default {
   /*border: 1px solid black;*/
 }
 
-.cash-input-container>input{
-  height:calc(100% + 3px);
+.cash-input-container > input {
+  height: calc(100% + 3px);
   width: calc(100% - 40px);
   border: none;
   color: #333;
 }
-.cash-input-container>input::placeholder{
+
+.cash-input-container > input::placeholder {
   color: #999;
 }
 
@@ -298,47 +341,52 @@ export default {
   width: 180px;
 }
 
-.ali-account-container{
+.ali-account-container {
   position: relative;
 }
-.ali-account-container>div{
+
+.ali-account-container > div {
   display: inline-block;
   height: 100%;
 }
 
 
-.ali-account-container>div>img{
+.ali-account-container > div > img {
   width: 100%;
   vertical-align: -5px;
 }
-.ali-account-container>div:nth-child(1){
+
+.ali-account-container > div:nth-child(1) {
   margin-left: 20px;
   width: calc(100% - 140px);
   height: calc(100% - 2px);
   margin-top: -5px;
 }
-.ali-account-container>div:nth-child(2){
+
+.ali-account-container > div:nth-child(2) {
   width: 14px;
   height: 100%;
   position: absolute;
   right: 80px;
   top: -4px;
 }
-.ali-account-container>div:nth-child(3){
+
+.ali-account-container > div:nth-child(3) {
   height: 100%;
   position: absolute;
   right: 20px;
-  top:-1px;
+  top: -1px;
   font-size: 14px;
 }
 
-.ali-account-container>div:nth-child(1)>input{
+.ali-account-container > div:nth-child(1) > input {
   width: 100%;
   font-size: 14px;
   color: #333;
   border: none;
 }
-.ali-account-container>div:nth-child(1)>input::placeholder{
+
+.ali-account-container > div:nth-child(1) > input::placeholder {
   color: #999;
 }
 
@@ -354,6 +402,15 @@ export default {
   color: white;
   margin-left: calc(50% - 115px);
   
+}
+
+.single-message-container {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  top: 255px;
+  
+  height: 54px;
 }
 
 

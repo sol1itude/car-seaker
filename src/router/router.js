@@ -16,6 +16,9 @@ const Profile = () => import('views/profile/Profile');
 const PromotionRegister = () => import('views/promotion/childComps/PromotionRegister');
 const PromotionManagePage = () => import('views/promotion/childComps/PromotionManagePage');
 const CashOutPage = () => import('views/promotion/childComps/CashOutPage');
+const CashOutSuccessPage = () => import('views/promotion/childComps/CashOutSuccessPage');
+const CashOutRecords = () => import('views/promotion/childComps/CashOutRecords');
+const PromotionPost = () => import('views/promotion/childComps/PromotionPost');
 
 const routes = [
   {
@@ -69,6 +72,30 @@ const routes = [
           title:'余额提现'
         },
         component:CashOutPage
+      },
+      {
+        path:'cashoutsuccess',
+        name:'CashOutSuccessPage',
+        meta:{
+          title:'提现成功'
+        },
+        component:CashOutSuccessPage
+      },
+      {
+        path:'cashoutrecords',
+        name:'CashOutRecords',
+        meta:{
+          title:'提现记录'
+        },
+        component:CashOutRecords
+      },
+      {
+        path:'promotionpost',
+        name:'PromotionPost',
+        meta:{
+          title:'提现记录'
+        },
+        component:PromotionPost
       }
     ]
   },

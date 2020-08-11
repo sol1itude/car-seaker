@@ -10,7 +10,7 @@
           推广二维码
         </div>
       </div>
-      <div @click="emitToast(2)" class="promotion-manage-type">
+      <div @click="toOtherPage('/promotion/promotionpost')" class="promotion-manage-type">
         <div>
           <img src="~assets/img/promotion/manage/promotion_poster.png" alt="hello">
         </div>
@@ -43,6 +43,9 @@ export default {
   methods:{
     emitToast(val){
       this.$emit('emitToast',val)
+    },
+    toOtherPage(val){
+      this.$router.replace(val)
     }
   },
   components: {Toast}
