@@ -88,7 +88,6 @@ export default {
             //提示复制成功
             console.log('复制成功')
             alert('复制成功')
-            
           })
     }
   }
