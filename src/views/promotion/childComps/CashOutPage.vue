@@ -48,7 +48,7 @@
           <div class="cash-out-select-flag"><img :src="CashOutTypeImg('ali')" alt=""></div>
         </div>
         <div class="ali-account-container" v-show="cashOutType=='ali'" style="border-top: 1px solid #ddd">
-          <div><input v-model="aliAccount" @blur="rollTop" placeholder="请输入支付宝账号" type="text"></div>
+          <div><input ref="aliAccountInput" v-model="aliAccount" @blur="rollTop" placeholder="请输入支付宝账号" type="text"></div>
           <div>
             <img
                 @click="rememberAliAccount=!rememberAliAccount"
@@ -137,6 +137,8 @@ export default {
     rememberAliSelect() {
       return this.rememberAliAccount ? require('assets/img/common/checkbox_selected.png') : require('assets/img/common/checkbox.png')
     }
+  },
+  watch:{
   }
 }
 </script>
