@@ -1,5 +1,5 @@
 <template>
-  <div class="promotion-manage" @touchmove.prevent>
+  <div class="promotion-manage" >
     <!--顶部显示余额模块-->
     <div class="title-container">
       <PromotionTitle @toCashOutPage="toOtherPage('/promotion/cashout')"></PromotionTitle>
@@ -11,7 +11,7 @@
     
     <!--其他信息选择-->
     <div class="promotion-display-container">
-      <PromotionManageItemList @click.native="showMessage('收益记录')"
+      <PromotionManageItemList @click.native="toOtherPage('/promotion/profitrecords')"
                                :image="require('assets/img/promotion/manage/profit_record.png')"
                                :text="'收益记录'"
                                :arrow="require('assets/img/common/arrow_right_gray.png')"/>
@@ -74,7 +74,7 @@ export default {
       alert(val)
     },
     toOtherPage(val){
-      this.$router.replace(val)
+      this.$router.push(val)
     },
     //toCashOutPage() {
     //  this.$router.replace('')

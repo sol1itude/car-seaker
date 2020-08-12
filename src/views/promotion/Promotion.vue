@@ -18,7 +18,8 @@ export default {
     // }else {
     //   this.$router.replace('/promotion/manage')
     // }
-    if(!confirm('是否注册过？')){
+    if(false){
+    //if(!confirm('是否注册过？')){
       this.$router.replace('/promotion/register')
     }else {
       this.$router.replace('/promotion/manage')

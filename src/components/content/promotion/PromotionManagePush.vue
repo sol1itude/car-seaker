@@ -45,7 +45,7 @@ export default {
       this.$emit('emitToast',val)
     },
     toOtherPage(val){
-      this.$router.replace(val)
+      this.$router.push(val)
     }
   },
   components: {Toast}
@@ -61,6 +61,9 @@ export default {
   justify-content: space-around;
   border-radius: 4px;
   /*padding-top: 18px;*/
+}
+.promotion-manage-middle-promotion>div{
+  flex: 1;
 }
 
 .promotion-manage-top-text{

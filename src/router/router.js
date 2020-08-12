@@ -19,7 +19,7 @@ const CashOutPage = () => import('views/promotion/childComps/CashOutPage');
 const CashOutSuccessPage = () => import('views/promotion/childComps/CashOutSuccessPage');
 const CashOutRecords = () => import('views/promotion/childComps/CashOutRecords');
 const PromotionPost = () => import('views/promotion/childComps/PromotionPost');
-
+const ProfitRecords = () => import('views/promotion/childComps/ProfitRecords');
 const routes = [
   {
     path: '',
@@ -96,6 +96,14 @@ const routes = [
           title:'推广海报'
         },
         component:PromotionPost
+      },
+      {
+        path:'profitrecords',
+        name:'ProfitRecords',
+        meta:{
+          title:'收益记录'
+        },
+        component:ProfitRecords
       }
     ]
   },
@@ -110,7 +118,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  // mode: 'history',
+   //mode: 'history',
   routes
 })
 

@@ -56,9 +56,9 @@ export default {
   font-weight: bold;
   font-size: 17px;
   position: relative;
-  top: 4px;
+  top: 0px;
   vertical-align: 2px;
-  width: 220px;
+  /*width: 220px;*/
   padding-left: 12px;
 }
 
@@ -69,8 +69,10 @@ export default {
 }
 
 .to-cash-out-container {
-  width: calc(100% - 265px);
+  /*width: calc(100% - 265px);*/
   text-align: right;
+  position: absolute;
+  right: 0;
 }
 
 .to-cash-out-container div {

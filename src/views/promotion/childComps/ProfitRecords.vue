@@ -1,14 +1,8 @@
 <template>
   <div class="profit-records-page">
     <div class="profit-records-page-title">
-      <div class="cash-out-records-page-title-wx">
-        <div>200.00</div>
-        <div>微信提现（元）</div>
-      </div>
-      <div class="cash-out-records-page-title-ali">
-        <div>400.00</div>
-        <div>支付宝提现（元）</div>
-      </div>
+      <div>800.00</div>
+      <div>累计收益（元）</div>
     </div>
     <div class="profit-records-page-middle">
       <div @click="showMonthPicker">{{ selectedMonth }}</div>
@@ -22,14 +16,15 @@
               ref="scroll"
               @reachBottom="loadMoreGoods"
               @scroll="scrollPositionChange">
+        
         <ProfitListItem v-for="item in displayRecords" :item="getItem(item)"></ProfitListItem>
       </scroll>
     
     </div>
     <div v-else class="profit-records-container">
       <div class="no-profit-records">
-        <img src="~assets/img/promotion/cashoutrecords/no_cash_out_display.png" alt="提现记录为空">
-        <div>本月提现记录为空</div>
+        <img src="~assets/img/promotion/profit/no_profit_display.png" alt="提现记录为空">
+        <div>本月暂无收益记录</div>
       </div>
     </div>
   
@@ -41,38 +36,63 @@ import ProfitListItem from "@/components/content/cashout/ProfitListItem";
 import Scroll from "@/components/common/scroll/Scroll";
 
 export default {
-  name: "CashOutRecords",
-  components: {ProfitListItem, Scroll},
+  name: "ProfitRecords"
+  , components: {ProfitListItem, Scroll},
   data() {
     return {
       selectedMonth: '2020/08',
       records: [
-        {type: 'ali', account: '123124@qq.com', num: 23, time: 1593203037204},
-        {type: 'ali', account: '123124@qq.com', num: 13, time: 1593205337204},
-        {type: 'wx', account: '123124@qq.com', num: 53, time: 1593205117204},
-        {type: 'ali', account: '123124@qq.com', num: 43, time: 1593115987204},
-        {type: 'ali', account: '123124@qq.com', num: 23, time: 1593095987204},
-        {type: 'ali', account: '123124@qq.com', num: 93, time: 1593015987204},
-        {type: 'wx', account: '123124@qq.com', num: 5, time: 1591205987204},
-        {type: 'ali', account: '123124@qq.com', num: 45000, time: 1591995987204},
-        {type: 'ali', account: '123124@qq.com', num: 18, time: 1597215987204},
-        {type: 'wx', account: '123123@qq.com', num: 50, time: 1597215987204},
-        {type: 'wx', account: '123123@qq.com', num: 50, time: 1597215987204},
-        {type: 'wx', account: '123123@qq.com', num: 50, time: 1597215987204},
-        {type: 'ali', account: '123123@qq.com', num: 50, time: 1597215987204},
-        {type: 'ali', account: '123123@qq.com', num: 50, time: 1597215987204},
-        {type: 'wx', account: '123123@qq.com', num: 50, time: 1597215987204},
-        {type: 'ali', account: '123123@qq.com', num: 50, time: 1597215987204},
-        {type: 'wx', account: '123123@qq.com', num: 50, time: 1597215987204},
+        {type: 'ckgj', account: '123124@qq.com', num: 23, time: 1593203037204},
+        {type: 'wbjl', account: '123124@qq.com', num: 13, time: 1593205337204},
+        {type: 'wbpz', account: '123124@qq.com', num: 53, time: 1593205117204},
+        {type: 'cxsb', account: '123124@qq.com', num: 43, time: 1593115987204},
+        {type: 'wbjl', account: '123124@qq.com', num: 23, time: 1593095987204},
+        {type: 'wbpz', account: '123124@qq.com', num: 93, time: 1593015987204},
+        {type: 'wbjl', account: '123124@qq.com', num: 5, time: 1591205987204},
+        {type: 'cxsb', account: '123124@qq.com', num: 45, time: 1591995987204},
+        {type: 'wbjl', account: '123124@qq.com', num: 18, time: 1597215987204},
+        {type: 'ckgj', account: '', num: 23, time: 1597215987204},
+        {type: 'wbjl', account: '', num: 35, time: 1597215987204},
+        {type: 'cxsb', account: '', num: 32, time: 1597215987204},
+        {type: 'wbpz', account: '', num: 19, time: 1597215987204},
+        {type: 'wbpz', account: '', num: 29, time: 1597215987204},
+        {type: 'wbpz', account: '', num: 47, time: 1597215987204},
+        {type: 'wbpz', account: '', num: 45, time: 1597215987204},
+        {type: 'wbpz', account: '', num: 78, time: 1597215987204},
       ],
       month: []
     }
   },
   methods: {
     getItem(val) {
+      let name = '';
+      let pic = '';
+      switch (val.type) {
+        case 'wbpz':
+          name = '维保碰撞';
+          pic = require('assets/img/promotion/profit/wbpz.png');
+          break;
+        case 'cxsb':
+          name = '车型识别';
+          pic = require('assets/img/promotion/profit/cxsb.png');
+          break;
+        case 'wbjl':
+          name = '维保记录';
+          pic = require('assets/img/promotion/profit/wbjl.png');
+          break;
+        case 'ckgj':
+          name = '车况估价';
+          pic = require('assets/img/promotion/profit/ckgj.png');
+  
+          break;
+        default:
+          name = '其他'
+          pic = require('assets/img/promotion/profit/ckgj.png');
+      }
+      
       return {
-        name: val.type === 'wx' ? '微信提现' : ('支付宝提现/' + val.account),
-        pic: require(val.type === 'wx' ? 'assets/img/promotion/cashout/wxpay.png' : 'assets/img/promotion/cashout/alipay.png'),
+        name: name,
+        pic: pic,
         time: val.time,
         type: val.type,
         num: val.num,
@@ -80,10 +100,12 @@ export default {
       }
     },
     scrollPositionChange() {
-      console.log('a')
+      //监听滚动位置
+      //console.log('a')
     },
     loadMoreGoods() {
-      console.log('aa')
+      //加载更多？
+      //console.log('aa')
     },
     padLeftZero(str) {
       return ('00' + str).substr(str.length)
@@ -163,27 +185,20 @@ export default {
   height: 57px;
   text-align: center;
 }
-
-.profit-records-page-title > div {
-  display: inline-block;
-  width: 50%;
-  height: 100%;
-}
-
-.profit-records-page-title > div > div:nth-child(1) {
+.profit-records-page-title>div:nth-child(1){
   height: 28px;
+  line-height: 28px;
   font-size: 28px;
   color: #ffffff;
-  line-height: 28px;
+  font-weight: bold;
 }
-
-.profit-records-page-title > div > div:nth-child(2) {
+.profit-records-page-title>div:nth-child(2){
   height: 17px;
+  line-height: 17px;
   font-size: 17px;
   color: #ffffff;
-  line-height: 17px;
+  font-weight: bold;
   margin-top: 12px;
-  text-align: center;
 }
 
 .profit-records-page-middle {
@@ -249,7 +264,6 @@ export default {
 }
 
 .profit-records-container > .no-profit-records div {
-  color: red;
   height: 14px;
   color: #999999;
   line-height: 14px;
