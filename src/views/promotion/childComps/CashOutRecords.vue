@@ -158,9 +158,9 @@ export default {
 
 .profit-records-page-title {
   position: relative;
-  top: 30px;
+  top: 8vw;
   width: 100%;
-  height: 57px;
+  height: 15.2vw;
   text-align: center;
 }
 
@@ -171,24 +171,26 @@ export default {
 }
 
 .profit-records-page-title > div > div:nth-child(1) {
-  height: 28px;
-  font-size: 28px;
+  height: 7.47vw;
+  font-size: 7.47vw;
+  /*font-size: 28px;*/
   color: #ffffff;
-  line-height: 28px;
+  line-height: 7.47vw;
 }
 
 .profit-records-page-title > div > div:nth-child(2) {
-  height: 17px;
-  font-size: 17px;
+  /*height: 17px;*/
+  height: 4.533vw;
+  font-size: 4.533vw;
   color: #ffffff;
-  line-height: 17px;
-  margin-top: 12px;
+  line-height: 4.533vw;
+  margin-top: 3.2vw;
   text-align: center;
 }
 
 .profit-records-page-middle {
   position: relative;
-  top: 60px;
+  top: 16vw;
   height: 56px;
   width: calc(100% - 40px);
   left: 20px;
@@ -228,9 +230,9 @@ export default {
 
 .profit-records-container {
   width: calc(100% - 40px);
-  height: calc(100vh - 195px);
+  height: calc(100vh - 52vw);
   position: relative;
-  top: 87px;
+  top: 23.2vw;
   left: 20px;
   /*border-top: 1px solid #dddddd;*/
   overflow-y: scroll;
