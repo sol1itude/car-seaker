@@ -168,6 +168,7 @@ export default {
   display: inline-block;
   width: 50%;
   height: 100%;
+  font-weight: bold;
 }
 
 .profit-records-page-title > div > div:nth-child(1) {
