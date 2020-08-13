@@ -5,7 +5,8 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    promotionRegistered:true
+    promotionRegistered:true,
+    wxCode:'0'
   },
   mutations: {
   },

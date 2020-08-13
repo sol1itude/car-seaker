@@ -1,15 +1,20 @@
 <template>
-  <div style="background: #F8F8F8">
+  <div
+      style="background: #F8F8F8">
     首页
   </div>
 </template>
 
 <script>
 export default {
-name: "Home"
+  name: "Home",
+  created() {
+
+  }
 }
 </script>
 
-<style scoped>
+<style
+    scoped>
 
 </style>
