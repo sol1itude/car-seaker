@@ -39,7 +39,8 @@ export default {
         {type: 3, status: 1, vin: 'ATNITM0362JS26123', time: 1593205117204, count: 9.9}
       ],
       showSingleMessage:false,
-      singleMessage:''
+      singleMessage:'',
+      timer:-1
     }
   },
   methods: {
@@ -56,7 +57,8 @@ export default {
     showSingleMessageMethod(val){
       this.singleMessage=val;
       this.showSingleMessage=true;
-      setTimeout(()=>{
+      clearTimeout(this.timer);
+      this.timer = setTimeout(()=>{
         this.showSingleMessage=false
       },1000)
     }
