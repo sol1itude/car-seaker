@@ -33,7 +33,7 @@ export default {
       probeType: this.probeType,
       //mouseWheel: true,
       pullUpLoad: this.pullUpLoad,
-      pullDownRefresh: true
+      pullDownRefresh: false
     })
 
     //2.监听滚动位置

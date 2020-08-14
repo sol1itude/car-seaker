@@ -1,15 +1,102 @@
 <template>
-  <div style="background: #F8F8F8">
-    订单
+  <div class="order-container" @touchmove.prevent>
+    <div class="order-head-container">
+      <TabControl @displayChanged="displayChanged"></TabControl>
+    </div>
+    <div class="order-body-data-container">
+      <scroll :probe-type="3"
+              :pull-up-load="true"
+              ref="scroll"
+              @reachBottom="loadMoreGoods"
+              @scroll="scrollPositionChange">
+        <OrderListItem @showSingleMessage="showSingleMessageMethod" v-for="item in displayOrders" :order="item"></OrderListItem>
+      </scroll>
+    </div>
+    <div v-if="showSingleMessage"  class="single-message-container">
+      <SingleLineMessageToast>{{singleMessage}}</SingleLineMessageToast>
+    </div>
   </div>
 </template>
 
 <script>
+import TabControl from "@/components/content/order/TabControl";
+import Scroll from "@/components/common/scroll/Scroll";
+import OrderListItem from "@/components/content/order/OrderListItem";
+import SingleLineMessageToast from "@/components/common/messageToast/SingleLineMessageToast";
+
 export default {
-  name: "Order"
+  name: "Order",
+  components: {SingleLineMessageToast, OrderListItem, TabControl, Scroll},
+  data() {
+    return {
+      currentIndex: 0,
+      orders: [
+        {type: 1, status: 1, vin: '123123123123123', time: 1590005117204, count: 23.00},
+        {type: 2, status: 0, vin: '123123123123123', time: 1593205117204, count: 45.00},
+        {type: 3, status: 0, vin: '123123123123123', time: 1591205117204, count: 52.00},
+        {type: 0, status: 1, vin: '123123123123123', time: 1593205117204, count: 5.00},
+        {type: 1, status: 2, vin: '123123123123123', time: 1593205117204, count: 5.00},
+        {type: 3, status: 1, vin: '123123123123123', time: 1593205117204, count: 5.00}
+      ],
+      showSingleMessage:false,
+      singleMessage:''
+    }
+  },
+  methods: {
+    loadMoreGoods() {
+    
+    },
+    scrollPositionChange() {
+    
+    },
+    displayChanged(val) {
+      this.currentIndex = val;
+      console.log(this.currentIndex)
+    },
+    showSingleMessageMethod(val){
+      this.singleMessage=val;
+      this.showSingleMessage=true;
+      setTimeout(()=>{
+        this.showSingleMessage=false
+      },1000)
+    }
+  },
+  computed: {
+    displayOrders() {
+      return this.currentIndex===0?this.orders:this.orders.filter(item=>{
+        return item.status===(this.currentIndex-1);
+      })
+    }
+  }
 }
 </script>
 
 <style scoped>
+.order-container {
+  width: 100vw;
+  height: 100vh;
+  background: #f8f8f8;
+}
 
+.order-head-container {
+  width: 100%;
+  height: 11.733vw;
+}
+
+.order-body-data-container {
+  width: calc(100% - 40px);
+  height: calc(100vh - 31.733vw);
+  position: relative;
+  left: 20px;
+  top: 5.333vw;
+}
+
+.single-message-container {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  top: 255px;
+  
+  height: 54px;
+}
 </style>
