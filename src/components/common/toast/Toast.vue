@@ -31,12 +31,12 @@ export default {
 }
 .toast-container{
   position: fixed;
-  left: calc(50% - 150px);
-  right: calc(50% - 150px);
-  top: 30%;
+  width: 80vw;
+  left: calc(50% - 40vw);
+  top: calc(50vh - 45vw);
   border-radius: 8px;
   background: white;
-  padding: 20px 10px;
+  padding: 8vw 5.33vw;
   text-align: center;
 }
 </style>

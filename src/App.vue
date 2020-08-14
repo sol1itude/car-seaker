@@ -24,18 +24,13 @@ export default {
   },
   computed:{
     showMainTabbar(){
-      return this.$route.fullPath.indexOf('/promotion/promotionpost')===-1;
+      return this.$route.fullPath.indexOf('/promotion/promotionpost')===-1
+          && this.$route.fullPath.indexOf('/login')===-1;
     },
 
   },
   created() {
-    let appid='wx7b354e4fb9cbeb4c';
-    let state = 'wodexiaochengxu'
-    if (this.$store.state.wxCode==='0'){
-      window.location.href='http://www.baidu.com'
-    }else {
-
-    }
+  
   }
 }
 </script>

@@ -20,10 +20,23 @@ const CashOutSuccessPage = () => import('views/promotion/childComps/CashOutSucce
 const CashOutRecords = () => import('views/promotion/childComps/CashOutRecords');
 const PromotionPost = () => import('views/promotion/childComps/PromotionPost');
 const ProfitRecords = () => import('views/promotion/childComps/ProfitRecords');
+const Login = () => import('views/login/Login');
 const routes = [
   {
     path: '',
-    redirect: '/home'
+    redirect: '/login'
+  },
+  {
+    path:'/',
+    redirect: '/login'
+  },
+  {
+    path:'/login',
+    name:'Login',
+    meta:{
+      title:'授权页面'
+    },
+    component:Login
   },
   {
     path: '/home',

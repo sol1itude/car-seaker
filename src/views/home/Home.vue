@@ -1,7 +1,8 @@
 <template>
-  <div
-      style="background: #F8F8F8">
+  <div style="background: #F8F8F8">
     首页
+    <div>{{$route.query.code}}</div>
+    <div>{{$route.query.state}}</div>
   </div>
 </template>
 
@@ -10,6 +11,8 @@ export default {
   name: "Home",
   created() {
 
+  },
+  methods:{
   }
 }
 </script>

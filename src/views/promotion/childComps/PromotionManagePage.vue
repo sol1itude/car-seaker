@@ -28,9 +28,10 @@
     <!--显示信息的toast-->
     <Toast v-if="toastIndex===1" @toastClicked="toastClicked">
       <div @click.stop>
-        <img style="width: calc(100% - 30px)"
+        <img style="width: 64vw;height: 64vw"
              :src="qrCodePath"
-             alt=""></div>
+             alt="">
+      </div>
       <div @click.stop style="color: #666;margin-top: 20px">
         长按二维码，可保存到手机
       </div>
