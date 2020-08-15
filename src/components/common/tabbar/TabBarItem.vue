@@ -41,7 +41,7 @@ export default {
   methods: {
     itemClick() {
       if (!this.isActive) {
-        this.$router.push(this.path);
+        this.$router.replace(this.path);
       }
     }
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="promotion-post-page-container">
+  <div class="promotion-post-page-container" @touchmove.capture>
     <div class="post-page-head-container">
       <img :src="backgroundPic" alt="">
       <div class="qrcode-container" :style="{height:calcSize(295.5)+'px'}">

@@ -1,5 +1,5 @@
 <template>
-  <div class="profit-records-page">
+  <div class="profit-records-page" @touchmove.prevent>
     <div class="profit-records-page-title">
       <div class="cash-out-records-page-title-wx">
         <div>200.00</div>

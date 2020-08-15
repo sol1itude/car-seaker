@@ -1,5 +1,5 @@
 <template>
-  <div class="profit-records-page">
+  <div class="profit-records-page" @touchmove.prevent>
     <div class="profit-records-page-title">
       <div>800.00</div>
       <div>累计收益（元）</div>

@@ -1,5 +1,5 @@
 <template>
-  <div style="background: #F8F8F8">
+  <div style="background: #F8F8F8" @touchmove.prevent>
     我的
   </div>
 </template>

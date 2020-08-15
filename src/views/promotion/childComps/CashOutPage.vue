@@ -48,7 +48,7 @@
           <div class="cash-out-select-flag"><img :src="CashOutTypeImg('ali')" alt=""></div>
         </div>
         <div class="ali-account-container" v-show="cashOutType=='ali'" style="border-top: 1px solid #ddd">
-          <div><input ref="aliAccountInput" v-model="aliAccount" @blur="rollTop" placeholder="请输入支付宝账号" type="text">
+          <div><input @blur="rollTop" ref="aliAccountInput" v-model="aliAccount" placeholder="请输入支付宝账号" type="text">
           </div>
           <div>
             <img
@@ -103,9 +103,8 @@ export default {
       return val === this.cashOutType ? require('assets/img/common/radio_selected.png') : require('assets/img/common/radio.png')
     },
     rollTop() {
-      if (this.judgeCash()) {
-        window.scrollTo(0, 0)
-      }
+      window.scrollTo(0, 0)
+      this.judgeCash();
     },
     
     judgeAliAccount() {
@@ -204,6 +203,11 @@ export default {
   height: 107px;
   border-radius: 4px;
   background: white;
+}
+
+
+input{
+  outline: none;
 }
 
 .cash-out-type-select-container {

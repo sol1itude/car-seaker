@@ -6,9 +6,10 @@ import VueClipboard from 'vue-clipboard2'
 import weui from "weui.js/dist/weui";
 import 'weui'
 
-Vue.prototype.$weui = weui
+Vue.prototype.$weui = weui;
 
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
+Vue.prototype.HOST = '/api'
 
 new Vue({
   router,
