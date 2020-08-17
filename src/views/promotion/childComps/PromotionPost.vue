@@ -7,7 +7,7 @@
             :style="{left:((windowWidth-40)/2 - calcSize(65)/2)+'px',width:calcSize(65)+'px',height: calcSize(65)+'px',top:calcSize(-33)+'px'}"
             class="post-user-icon-container">
           <img
-              src="~assets/img/promotion/post/header.jpg"
+              :src="$store.state.userInfo.headimgurl"
               alt="头像">
         </div>
         <div :style="{top:calcSize(35)+'px'}" class="post-message-container">

@@ -1,32 +1,77 @@
 <template>
   <div id="login-page" @touchmove.prevent>
-    {{$route.params.code}}
-    {{$route.params.state}}
   </div>
 </template>
 
 <script>
 import constParams from "@/common/constParams";
+import {getUrlParams, getUserInfo, getOpenId} from "@/network/common";
 
 export default {
   name: "Login",
+  data() {
+    return {
+      targetPage: '',
+      userInfo: {}
+    }
+  },
+  methods: {
+    
+    judgeLogin() {
+      
+      let urlParams = getUrlParams();
+      let state = urlParams.state;
+      if (typeof state == 'undefined'||state=="undefined"||state.indexOf("undefined")!=-1 || state == 'login') {
+        state = 'home';
+      }
+      
+      this.targetPage = state
+      
+      //未登录
+      if (!this.$store.state.login) {
+        console.log('not login')
+        if (urlParams.code === '' || urlParams.code === undefined) {
+          let url = 'https://open.weixin.qq.com/connect/oauth2/authorize?appid=' + constParams.appId + '&redirect_uri=' + encodeURIComponent(constParams.redirectUrl) + '&response_type=code&scope=snsapi_base&state=' + state + '#wechat_redirect';
+          console.log(url)
+          window.location.href = url;
+        } else {
+          getOpenId(urlParams.code).then(res => res.json())
+              .then(json => {
+                let openid = json.data.openid;
+                let hasSubscribe = json.data.has_subscribe
+                console.log(json.data.openid, 'openid')
+                console.log(json.data.has_subscribe, 'sub')
+                this.$store.commit('setOpenId', openid)
+                this.$store.commit('setHasSubscribe', hasSubscribe)
+                //TODO 根据关注状态判断是否跳转关注页面
+                
+                getUserInfo(openid)
+                    .then(res => res.json())
+                    .then(json => {
+                      this.$store.commit('setUserInfo', json.data);
+                      this.$store.commit('setLogin', 1);
+                      
+                      this.$router.push('/'+this.targetPage)
+                    })
+              })
+        }
+      } else {
+        console.log('login ok')
+        this.$router.replace('/'+this.targetPage)
+      }
+    },
+    
+  },
   created() {
-    //if (this.$store.state.wxCode==='0'){
-    //  let url='https://open.weixin.qq.com/connect/oauth2/authorize?appid='+constParams.appId+'&redirect_uri='+encodeURIComponent(constParams.redirectUrl)+'&response_type=code&scope=snsapi_base&state=ok#wechat_redirect';
-    //  // alert(url)
-    //  console.log(url)
-    //  window.location.href=url;
-    //}else {
-    //  this.$router.replace("/home")
-    //}
+    this.judgeLogin();
   }
 }
 </script>
 
 <style scoped>
-#login-page{
+#login-page {
   position: relative;
-  height: 100vh;
+  height: 120vh;
   width: 100vw;
   background: #ffffff;
   z-index: 99;

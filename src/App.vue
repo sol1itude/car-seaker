@@ -3,7 +3,7 @@
     <keep-alive exclude="Promotion">
       <router-view  id="main-page-routerview"/>
     </keep-alive>
-    <div v-if="showMainTabbar" class="main-tab-bar">
+    <div class="main-tab-bar">
       <MainTabBar/>
     </div>
   </div>
@@ -23,10 +23,10 @@ export default {
   mounted() {
   },
   computed:{
-    showMainTabbar(){
-      return this.$route.fullPath.indexOf('/promotion/promotionpost')===-1
-          && this.$route.fullPath.indexOf('/login')===-1;
-    },
+    //showMainTabbar(){
+    //  return this.$route.fullPath.indexOf('/promotion/promotionpost')===-1
+    //      && this.$route.fullPath.indexOf('/login')===-1;
+    //},
 
   },
   created() {

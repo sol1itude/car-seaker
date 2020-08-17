@@ -30,3 +30,5 @@ export function request(config) {
   //3.发送请求并返回
   return instance(config);
 }
+
+

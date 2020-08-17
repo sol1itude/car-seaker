@@ -24,20 +24,21 @@ const Login = () => import('views/login/Login');
 const routes = [
   {
     path: '',
-    //redirect: '/login'
-    redirect: '/home'
+    redirect: '/login'
+    //redirect: '/profile'
   },
   {
-    path:'/',
-    redirect: '/home'
+    path: '/',
+    redirect: '/login'
+    //redirect: '/profile'
   },
   {
-    path:'/login',
-    name:'Login',
-    meta:{
-      title:'授权页面'
+    path: '/login',
+    name: 'Login',
+    meta: {
+      title: ''
     },
-    component:Login
+    component: Login
   },
   {
     path: '/home',
@@ -80,44 +81,44 @@ const routes = [
         component: PromotionManagePage
       },
       {
-        path:'cashout',
-        name:'CashOutPage',
-        meta:{
-          title:'余额提现'
+        path: 'cashout',
+        name: 'CashOutPage',
+        meta: {
+          title: '余额提现'
         },
-        component:CashOutPage
+        component: CashOutPage
       },
       {
-        path:'cashoutsuccess',
-        name:'CashOutSuccessPage',
-        meta:{
-          title:'提现成功'
+        path: 'cashoutsuccess',
+        name: 'CashOutSuccessPage',
+        meta: {
+          title: '提现成功'
         },
-        component:CashOutSuccessPage
+        component: CashOutSuccessPage
       },
       {
-        path:'cashoutrecords',
-        name:'CashOutRecords',
-        meta:{
-          title:'提现记录'
+        path: 'cashoutrecords',
+        name: 'CashOutRecords',
+        meta: {
+          title: '提现记录'
         },
-        component:CashOutRecords
+        component: CashOutRecords
       },
       {
-        path:'promotionpost',
-        name:'PromotionPost',
-        meta:{
-          title:'推广海报'
+        path: 'promotionpost',
+        name: 'PromotionPost',
+        meta: {
+          title: '推广海报'
         },
-        component:PromotionPost
+        component: PromotionPost
       },
       {
-        path:'profitrecords',
-        name:'ProfitRecords',
-        meta:{
-          title:'收益记录'
+        path: 'profitrecords',
+        name: 'ProfitRecords',
+        meta: {
+          title: '收益记录'
         },
-        component:ProfitRecords
+        component: ProfitRecords
       }
     ]
   },
@@ -132,12 +133,34 @@ const routes = [
 ]
 
 const router = new VueRouter({
-   // mode: 'history',
+   //mode: 'history',
   routes
 })
 
-//判断登录状态，携带
+//判断登录状态
 router.beforeEach((to, from, next) => {
+  let login = router.app.$options.store.state.login;
+  console.log(to.path)
+  //1.判断登录状态
+  if (to.path === '/login') {
+    next();
+  } else {
+
+    if (login) {
+      //2.已登录，跳转
+      console.log('已登录，跳转')
+      next();
+    } else {
+      //3.未登录,跳转登录授权页面
+      router.replace({
+        path: '/login',
+        query: {
+          target: to.path.indexOf('/'+1)
+        }
+      })
+    }
+  }
+
   document.title = to.meta.title;
   // TODO 判断是否微信浏览器(发布后放开)
   // let ua = judgeUserAgent();
@@ -147,17 +170,14 @@ router.beforeEach((to, from, next) => {
   // } else {
   //   next()
   // }
-  next()
+  //next()
 })
 
 router.onError((error) => {
   const pattern = /Loading chunk (\d)+ failed/g;
   const isChunkLoadFailed = error.message.match(pattern);
   if (isChunkLoadFailed) {
-    // 用路由的replace方法，并没有相当于F5刷新页面，失败的js文件并没有从新请求，会导致一直尝试replace页面导致死循环，而用 location.reload 方法，相当于触发F5刷新页面，虽然用户体验上来说会有刷新加载察觉，但不会导致页面卡死及死循环，从而曲线救国解决该问题
     location.reload();
-    // const targetPath = $router.history.pending.fullPath;
-    // $router.replace(targetPath);
   }
 
 });
