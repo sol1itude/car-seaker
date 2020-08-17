@@ -1,6 +1,6 @@
 <template>
   <div id="profile" @touchmove.prevent>
-    <img :src="$store.state.userInfo.headimgurl" style="width: 50px;height: 50px;margin: auto;border-radius: 50%"
+    <img :src="$store.state.userInfo.headimgurl" style="width: 50px;height: 50px;border-radius: 50%"
          alt="">
     <div>是否关注：{{ $store.state.hasSubscribe ? '是' : '否' }}</div>
   </div>
@@ -15,9 +15,10 @@ export default {
 </script>
 
 <style scoped>
-#profile{
+#profile {
   background: #F8F8F8;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
+  text-align: center;
 }
 </style>
