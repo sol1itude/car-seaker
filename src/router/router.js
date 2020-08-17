@@ -24,11 +24,12 @@ const Login = () => import('views/login/Login');
 const routes = [
   {
     path: '',
-    redirect: '/login'
+    //redirect: '/login'
+    redirect: '/home'
   },
   {
     path:'/',
-    redirect: '/login'
+    redirect: '/home'
   },
   {
     path:'/login',
