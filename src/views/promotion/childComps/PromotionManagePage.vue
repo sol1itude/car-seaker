@@ -1,94 +1,53 @@
 <template>
-  <div class="promotion-manage" @touchmove.prevent>
-    <div        class="promotion-manage-top">
-      <div>
-        <img            src="~assets/img/promotion/manage/balance.png"            alt="">
-      </div>
-      <div>
-        余额:
-        <span>{{balance.toFixed(2)}}</span>
-      </div>
-      <div          @click="toCashOutPage">
-        去提现
-        <img src="~assets/img/common/arrow_right_white.png" alt="">
-      </div>
+  <div class="promotion-manage" >
+    <!--顶部显示余额模块-->
+    <div class="title-container">
+      <PromotionTitle @toCashOutPage="toOtherPage('/promotion/cashout')"></PromotionTitle>
     </div>
-    <div class="promotion-manage-middle">
-      <div class="promotion-manage-middle-promotion">
-        <div @click="toastIndex=1" class="promotion-manage-type">
-          <div>
-            <img style="width: 45px" src="~assets/img/promotion/manage/promotion_qrcode.png" alt="hello">
-          </div>
-          <div class="promotion-manage-top-text">
-            推广二维码
-          </div>
-        </div>
-        <div class="promotion-manage-type">
-          <div>
-            <img style="width: 45px" src="~assets/img/promotion/manage/promotion_poster.png" alt="hello">
-          </div>
-          <div class="promotion-manage-top-text">
-            推广海报
-          </div>
-        </div>
-        <div @click="toastIndex=3"
-            class="promotion-manage-type">
-          <div>
-            <img style="width: 45px" src="~assets/img/promotion/manage/promotion_link.png" alt="hello">
-          </div>
-          <div class="promotion-manage-top-text">
-            推广链接
-          </div>
-        </div>
-      </div>
-      <div class="promotion-manage-select"   @click="showMessage('收益记录还没写')">
-        <div class="image">
-          <img src="~assets/img/promotion/manage/profit_record.png" alt="">
-        </div>
-        <div class="text">
-          收益记录
-        </div>
-        <div class="arrow">
-          <img src="~assets/img/common/arrow_right_gray.png" alt="1">
-        </div>
-      </div>
-      <div class="promotion-manage-select"   @click="showMessage('提现记录还没写')">
-        <div class="image">
-          <img src="~assets/img/promotion/manage/cash_out_record.png" alt="">
-        </div>
-        <div class="text">
-          提现记录
-        </div>
-        <div class="arrow">
-          <img src="~assets/img/common/arrow_right_gray.png" alt="1">
-        </div>
-      </div>
-      <div class="promotion-manage-select"  @click="showMessage('推广规则还没写')">
-        <div class="image">
-          <img src="~assets/img/promotion/manage/promotion_rules.png" alt="">
-        </div>
-        <div class="text">
-          推广规则
-        </div>
-        <div class="arrow">
-          <img src="~assets/img/common/arrow_right_gray.png" alt="1">
-
-        </div>
-      </div>
-
+    <!--获取推广展示-->
+    <div class="push-container">
+      <PromotionManagePush @emitToast="emitToast"></PromotionManagePush>
     </div>
+    
+    <!--其他信息选择-->
+    <div class="promotion-display-container">
+      <PromotionManageItemList @click.native="toOtherPage('/promotion/profitrecords')"
+                               :image="require('assets/img/promotion/manage/profit_record.png')"
+                               :text="'收益记录'"
+                               :arrow="require('assets/img/common/arrow_right_gray.png')"/>
+      <PromotionManageItemList @click.native="toOtherPage('/promotion/cashoutrecords')"
+                               :image="require('assets/img/promotion/manage/cash_out_record.png')"
+                               :text="'提现记录'"
+                               :arrow="require('assets/img/common/arrow_right_gray.png')"/>
+      <PromotionManageItemList @click.native="showMessage('推广规则')"
+                               :image="require('assets/img/promotion/manage/promotion_rules.png')"
+                               :text="'推广规则'"
+                               :arrow="require('assets/img/common/arrow_right_gray.png')"/>
+    </div>
+    
+    <!--显示信息的toast-->
     <Toast v-if="toastIndex===1" @toastClicked="toastClicked">
-      <div  @click.stop >
-        <img style="width: calc(100% - 30px)"
-            :src="qrCodePath"
-            alt=""></div>
-      <div  @click.stop style="color: #666;margin-top: 20px">
+      <div @click.stop>
+        <img style="width: 64vw;height: 64vw"
+             :src="qrCodePath"
+             alt="">
+      </div>
+      <div @click.stop style="color: #666;margin-top: 20px">
         长按二维码，可保存到手机
       </div>
     </Toast>
-    <Toast v-if="toastIndex===3" @toastClicked="toastClicked" >
-      <div @click.stop style="width:80%;margin-left:30px;text-align:left;word-break:break-all;line-height: 200%;color: #333;">{{promotionUrl}}</div>
-      <div @click.stop="copyPromotionLink" style="margin-top: 30px;margin-left: calc(50% - 80px);background: #716dff;width: 160px;height: 40px;line-height: 40px;color: white;font-size: 14px;border-radius: 4px;">复制链接</div>
+    <Toast v-if="toastIndex===2" @toastClicked="toastClicked">
+      <div>推广海报还没写</div>
+    </Toast>
+    <Toast v-if="toastIndex===3" @toastClicked="toastClicked">
+      <div @click.stop
+           style="width:80%;margin-left:30px;text-align:left;word-break:break-all;line-height: 200%;color: #333;">
+        {{ promotionUrl }}
+      </div>
+      <div @click.stop="copyPromotionLink"
+           style="margin-top: 30px;margin-left: calc(50% - 80px);background: #716dff;width: 160px;height: 40px;line-height: 40px;color: white;font-size: 14px;border-radius: 4px;">
+        复制链接
+      </div>
     </Toast>
   </div>
 </template>
@@ -96,35 +55,44 @@
 <script>
 import Toast
   from "@/components/common/toast/Toast";
+import PromotionManageItemList from "@/components/content/promotion/PromotionManageItemList";
+import PromotionManagePush from "@/components/content/promotion/PromotionManagePush";
+import PromotionTitle from "@/components/content/promotion/PromotionTitle";
+
 export default {
   name: "PromotionManagePage",
-  components: {Toast},
+  components: {PromotionTitle, PromotionManagePush, PromotionManageItemList, Toast},
   data() {
     return {
       balance: 480.00,
-      toastIndex:999,
-      qrCodePath:require('assets/img/test/qrcode.png'),
-      promotionUrl:'http://www.baidu.com/asdhjfa;sdjflasdfjas;df/asdfasdkjflasdf;'
+      toastIndex: 999,
+      qrCodePath: require('assets/img/test/qrcode.png'),
+      promotionUrl: 'http://www.baidu.com/asdhjfa;sdjflasdfjas;df/asdfasdkjflasdf;'
     }
   },
   methods: {
-    showMessage(val){
+    showMessage(val) {
       alert(val)
     },
-    toCashOutPage() {
-      this.$router.replace('/promotion/cashout')
+    toOtherPage(val){
+      this.$router.push(val)
     },
-    toastClicked(){
-      this.toastIndex=999
+    //toCashOutPage() {
+    //  this.$router.replace('')
+    //},
+    toastClicked() {
+      this.toastIndex = 999
     },
-    copyPromotionLink(){
+    emitToast(val) {
+      this.toastIndex = val
+    },
+    copyPromotionLink() {
       this.$copyText(this.promotionUrl)
-      .then(res=>{
-        //提示复制成功
-        console.log('复制成功')
-        alert('复制成功')
-
-      })
+          .then(res => {
+            //提示复制成功
+            console.log('复制成功')
+            alert('复制成功')
+          })
     }
   }
 }
@@ -132,155 +100,41 @@ export default {
 
 <style
     scoped>
-.promotion-manage-top-text{
-  color: black;
-}
-.promotion-manage-select{
-  display: flex;
-}
-.promotion-manage-select>div{
-  display: inline-block;
-  vertical-align: middle;
-  margin: 8px;
-  line-height: 40px;
-  color: black;
-}
-.promotion-manage-select>.image>img{
-  height: 30px;
-  margin-top: 5px;
-  margin-left: 15px;
-}
-
-.promotion-manage-select>div:nth-child(3){
-  position: absolute;
-  right: 20px;
-}
-.promotion-manage-select>div:nth-child(3)>img{
-  width: 12px;
-  vertical-align: -4px;
-}
 
 .promotion-manage {
-  background: #f8f8f8 url("~assets/img/promotion/manage/promotion_manage_background.png") no-repeat fixed top;
+  background: #f8f8f8 url("~assets/img/promotion/manage/promotion_manage_background.png") no-repeat left top;
   background-size: 100%;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   text-align: center;
 }
 
-.promotion-manage-top {
-  position: fixed;
+.title-container {
+  position: absolute;
   top: 30px;
   left: 20px;
-  right: 20px;
-  height: 50px;
-  text-align: left;
-  vertical-align: top;
+  height: 44px;
+  width: calc(100% - 40px);
 }
 
-.promotion-manage-top div {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: 50px;
-  height: 100%;
-  color: black;
-}
-
-.promotion-manage-top div > img {
-  height: 100%;
-}
-
-.promotion-manage-top > div:nth-child(1) {
-  text-align: left;
-}
-
-.promotion-manage-top > div:nth-child(2) {
-  text-align: left;
-  margin-left: 12px;
-  font-size: 17px;
-  font-weight: bold;
-  line-height: 50px;
-  vertical-align: -5px;
-  color: white;
-}
-
-.promotion-manage-top > div:nth-child(2) > span {
-  font-size: 28px;
-  display: inline-block;
-  height: 100%;
-  vertical-align: -2px;
-  line-height: 50px;
-}
-
-.promotion-manage-top > div:nth-child(3) {
-  text-align: left;
-  font-size: 17px;
+.push-container {
   position: absolute;
-  right: 0px;
-  color: white;
-  vertical-align: 50px;
-  margin-top: 3px;
-}
-
-.promotion-manage-top > div:nth-child(3) > img {
-  height: 40%;
-  vertical-align: text-top;
-}
-
-.promotion-manage-middle {
-  position: absolute;
-  top: 100px;
-  left: 0;
-  right: 0;
-  text-align: center;
-}
-
-.promotion-manage-middle > div {
-  position: absolute;
+  width: calc(100% - 40px);
   left: 20px;
-  right: 20px;
-  height: 56px;
   background: white;
   border-radius: 4px;
-  
+  top: 104px;
 }
 
-.promotion-manage-middle > div:nth-child(1) {
-  top: 5px;
-  height: 112px;
-  
-}
-
-.promotion-manage-middle > div:nth-child(2) {
-  top: 132px;
-}
-
-.promotion-manage-middle > div:nth-child(3) {
-  top: 208px;
-}
-
-.promotion-manage-middle > div:nth-child(4) {
-  top: 284px;
-}
-
-.promotion-manage-middle-promotion {
+.promotion-display-container {
+  position: absolute;
+  width: calc(100% - 40px);
+  left: 20px;
+  top: 232px;
   display: flex;
-  justify-content: space-around;
-}
-
-.promotion-manage-middle-promotion > div {
-  flex: 1;
-  text-align: center;
-  height: 100%;
-}
-
-.promotion-manage-type {
-  margin-top: 20px;
-  
-}
-
-.promotion-manage-type > div:nth-child(2) {
-  margin-top: 12px;
+  height: 208px;
+  justify-content: space-between;
+  flex-direction: column;
 }
 
 </style>

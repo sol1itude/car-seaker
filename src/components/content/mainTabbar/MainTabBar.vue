@@ -1,6 +1,6 @@
 <template>
     <tab-bar>
-      <tab-bar-item v-for="tabBar in tabbars" :key="tabBar.path" :path="tabBar.path" :active-color="tabBar.activeColor">
+      <tab-bar-item  :pic-margin-top="9" :text-margin-top="5" v-for="tabBar in tabbars" :key="tabBar.path" :path="tabBar.path" :active-color="tabBar.activeColor">
         <template v-slot:item-icon>
           <img :src="tabBar.pic" alt="home">
         </template>
@@ -62,7 +62,5 @@ export default {
 </script>
 
 <style scoped>
-#main-tab-bar{
- height: 49px;
-}
+
 </style>

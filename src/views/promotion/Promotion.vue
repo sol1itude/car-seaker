@@ -1,10 +1,6 @@
 <template>
-  <div id="promotion">
+  <div id="promotion" >
     <router-view />
-    <br>
-    <br>
-    <br>
-    <br>
   </div>
 </template>
 
@@ -12,18 +8,22 @@
 export default {
   name: "Promotion",
   created() {
+  
+
+  },
+  mounted() {
     console.log('注册过推广？',!this.$store.state.idAuthenticate);
     // if (!this.$store.state.promotionRegistered){
     //   this.$router.replace('/promotion/register')
     // }else {
     //   this.$router.replace('/promotion/manage')
     // }
-    if(!confirm('是否注册过？')){
-        this.$router.replace('/promotion/register')
+    if(false){
+    //if(!confirm('是否注册过？')){
+      this.$router.replace('/promotion/register')
     }else {
       this.$router.replace('/promotion/manage')
     }
-
   },
   methods:{
     hello(val){

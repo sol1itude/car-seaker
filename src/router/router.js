@@ -16,11 +16,27 @@ const Profile = () => import('views/profile/Profile');
 const PromotionRegister = () => import('views/promotion/childComps/PromotionRegister');
 const PromotionManagePage = () => import('views/promotion/childComps/PromotionManagePage');
 const CashOutPage = () => import('views/promotion/childComps/CashOutPage');
-
+const CashOutSuccessPage = () => import('views/promotion/childComps/CashOutSuccessPage');
+const CashOutRecords = () => import('views/promotion/childComps/CashOutRecords');
+const PromotionPost = () => import('views/promotion/childComps/PromotionPost');
+const ProfitRecords = () => import('views/promotion/childComps/ProfitRecords');
+const Login = () => import('views/login/Login');
 const routes = [
   {
     path: '',
-    redirect: '/home'
+    redirect: '/login'
+  },
+  {
+    path:'/',
+    redirect: '/login'
+  },
+  {
+    path:'/login',
+    name:'Login',
+    meta:{
+      title:'授权页面'
+    },
+    component:Login
   },
   {
     path: '/home',
@@ -69,6 +85,38 @@ const routes = [
           title:'余额提现'
         },
         component:CashOutPage
+      },
+      {
+        path:'cashoutsuccess',
+        name:'CashOutSuccessPage',
+        meta:{
+          title:'提现成功'
+        },
+        component:CashOutSuccessPage
+      },
+      {
+        path:'cashoutrecords',
+        name:'CashOutRecords',
+        meta:{
+          title:'提现记录'
+        },
+        component:CashOutRecords
+      },
+      {
+        path:'promotionpost',
+        name:'PromotionPost',
+        meta:{
+          title:'推广海报'
+        },
+        component:PromotionPost
+      },
+      {
+        path:'profitrecords',
+        name:'ProfitRecords',
+        meta:{
+          title:'收益记录'
+        },
+        component:ProfitRecords
       }
     ]
   },
@@ -83,7 +131,7 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  // mode: 'history',
+   // mode: 'history',
   routes
 })
 

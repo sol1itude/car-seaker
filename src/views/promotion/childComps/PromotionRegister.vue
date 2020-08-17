@@ -17,7 +17,7 @@
         <img
             src="~assets/img/promotion/register/mobile.png"
             alt="手机"
-            style="vertical-align: middle">
+            style="vertical-align: -4px">
         <input
             v-model="mobile"
             @focus="mobileInputting=true"
@@ -33,7 +33,7 @@
         <img
             src="~assets/img/promotion/register/vcode.png"
             alt="手机"
-            style="vertical-align: middle">
+            style="vertical-align: -4px">
         <input
             v-model="vcode"
             @focus="vcodeInputting=true"
@@ -228,8 +228,7 @@ export default {
 
 .promotion-register-input-box img {
   margin-left: 20px;
-  
-  width: 24px;
+  width: 20px;
 }
 
 .promotion-register-input-box input {
@@ -239,6 +238,7 @@ export default {
   border: none;
   background: #f8f8f8;
 }
+
 
 .promotion-register-input-box input::placeholder {
   color: #acaaaf;
@@ -263,7 +263,7 @@ export default {
 }
 
 .promotion-register-input-box:nth-child(3) {
-  width: calc(80% - 40px);
+  width: 240px;
   height: 52px;
   margin-top: 30px;
   border-radius: 8px;
