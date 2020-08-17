@@ -1,11 +1,12 @@
 import {request} from "./request";
-
 export function getOpenId(code){
   return request({
     headers:{
-      'Access-Control-Allow-Origin':'*'
+      'Access-Control-Allow-Origin':'*',
+      "Origin":'yingyanchaxun.com',
+      "Referer":'yingyanchaxun.com'
     },
-    url:'?s=/Home/User/getopenid',
+    url:'/api/search_vehicle_index.php?s=/Home/User/getopenid',
     method:'post',
     data:{
       code:code
