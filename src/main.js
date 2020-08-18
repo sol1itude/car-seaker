@@ -11,10 +11,11 @@ Vue.prototype.$weui = weui;
 
 Vue.config.productionTip = false;
 
+Vue.use(VueClipboard)
+
 new Vue({
   router,
   store,
   render: h => h(App)
 }).$mount('#app')
 
-Vue.use(VueClipboard)
