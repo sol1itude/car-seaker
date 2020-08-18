@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-        class="contact-us">
+        class="contact-us" @touchmove.prevent>
       <div
           class="contact-us-container">
         <div>

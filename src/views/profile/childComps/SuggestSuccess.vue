@@ -1,7 +1,7 @@
 <template>
   <div>
     <div
-        id="suggest-success-page">
+        id="suggest-success-page" @touchmove.prevent>
       <div
           class="suggest-success-page-img-container">
         <img

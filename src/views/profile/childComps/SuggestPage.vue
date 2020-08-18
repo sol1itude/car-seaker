@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="suggest-page">
+    <div class="suggest-page" @touchmove.prevent>
       <div>- 问题类型</div>
       <div class="problem-container">
         <div @click="currentProblemIndex=index" :style="activeProblem(index)" v-for="(item,index) in problems">{{item}}</div>
