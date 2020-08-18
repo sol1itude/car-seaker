@@ -35,7 +35,7 @@ export default {
           console.log(url)
           window.location.href = url;
         } else {
-          getOpenId(urlParams.code).then(res => res.json())
+          getOpenId(urlParams.code)
               .then(json => {
                 let openid = json.data.openid;
                 let hasSubscribe = json.data.has_subscribe
@@ -46,7 +46,6 @@ export default {
                 //TODO 根据关注状态判断是否跳转关注页面
                 
                 getUserInfo(openid)
-                    .then(res => res.json())
                     .then(json => {
                       this.$store.commit('setUserInfo', json.data);
                       this.$store.commit('setLogin', 1);

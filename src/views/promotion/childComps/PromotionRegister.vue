@@ -201,8 +201,8 @@ export default {
   position: absolute;
   left: 25px;
   right: 25px;
-  height: 274px;
-  bottom: 100px;
+  height: 73.07vw;
+  bottom: 26.67vw;
   text-align: center;
   display: flex;
   display: -webkit-flex;
@@ -246,8 +246,8 @@ export default {
 
 .promotion-register-input-box:nth-child(1) {
   width: calc(90% - 20px);
-  height: 56px;
-  margin-top: 30px;
+  height: 15vw;
+  margin-top: 8vw;
   background: #f8f8f8;
   border-radius: 4px;
   
@@ -255,21 +255,21 @@ export default {
 
 .promotion-register-input-box:nth-child(2) {
   width: calc(90% - 20px);
-  height: 56px;
-  margin-top: 20px;
+  height: 15vw;
+  margin-top: 5.33vw;
   background: #f8f8f8;
   border-radius: 4px;
   
 }
 
 .promotion-register-input-box:nth-child(3) {
-  width: 240px;
-  height: 52px;
-  margin-top: 30px;
+  width:64vw;
+  height: 13.87vw;
+  margin-top: 8vw;
   border-radius: 8px;
   background: #716dff;
   color: white;
-  line-height: 52px;
+  line-height: 13.87vw;
   text-align: center;
   font-size: 14px;
   

@@ -139,27 +139,27 @@ const router = new VueRouter({
 
 //判断登录状态
 router.beforeEach((to, from, next) => {
-  let login = router.app.$options.store.state.login;
-  console.log(to.path)
-  //1.判断登录状态
-  if (to.path === '/login') {
-    next();
-  } else {
-
-    if (login) {
-      //2.已登录，跳转
-      console.log('已登录，跳转')
-      next();
-    } else {
-      //3.未登录,跳转登录授权页面
-      router.replace({
-        path: '/login',
-        query: {
-          target: to.path.indexOf('/'+1)
-        }
-      })
-    }
-  }
+  //let login = router.app.$options.store.state.login;
+  //console.log(to.path)
+  ////1.判断登录状态
+  //if (to.path === '/login') {
+  //  next();
+  //} else {
+  //
+  //  if (login) {
+  //    //2.已登录，跳转
+  //    console.log('已登录，跳转')
+  //    next();
+  //  } else {
+  //    //3.未登录,跳转登录授权页面
+  //    router.replace({
+  //      path: '/login',
+  //      query: {
+  //        target: to.path.indexOf('/'+1)
+  //      }
+  //    })
+  //  }
+  //}
 
   document.title = to.meta.title;
   // TODO 判断是否微信浏览器(发布后放开)
@@ -170,7 +170,7 @@ router.beforeEach((to, from, next) => {
   // } else {
   //   next()
   // }
-  //next()
+  next()
 })
 
 router.onError((error) => {

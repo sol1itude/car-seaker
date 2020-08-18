@@ -14,30 +14,28 @@ export function getUrlParams() {
 }
 
 //根据code获取openid
+//export function getOpenId(code) {
+//  return fetch('http://yingyanchaxun.com/api/search_vehicle_index.php?s=/Home/User/getopenid&code=' + code,
+//      {
+//        method: 'get',
+//        mode: 'cors',
+//      })
+//}
 export function getOpenId(code) {
-  return fetch('http://yingyanchaxun.com/api/search_vehicle_index.php?s=/Home/User/getopenid&code=' + code,
-      {
-        method: 'get',
-        mode: 'cors',
-      })
+  return request({
+    url: 'http://yingyanchaxun.com/api/search_vehicle_index.php?s=/Home/User/getopenid&code=' + code,
+    method: 'get'
+  })
 }
 
 //根据openid获取用户信息
 export function getUserInfo(openid) {
-  return fetch('http://yingyanchaxun.com/api/search_vehicle_index.php?s=/Home/User/login&openid=' + openid, {
+  return request({
+    url:'http://yingyanchaxun.com/api/search_vehicle_index.php?s=/Home/User/login&openid=' +openid,
     method: 'get',
-    mode: 'cors',
   })
 }
 
-export function getGoodsDetail(iid) {
-  return request({
-    url: '/detail',
-    params: {
-      iid,
-    }
-  })
-}
 
 export class Goods {
   constructor(itemInfo, columns, services) {
