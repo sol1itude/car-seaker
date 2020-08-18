@@ -1,31 +1,45 @@
 <template>
-  <div class="suggest-success-page">
-    <div class="suggest-success-page-img-container">
-      <img src="~assets/img/profile/suggest/suggest_success.png" alt="提交成功">
+  <div>
+    <div
+        id="suggest-success-page">
+      <div
+          class="suggest-success-page-img-container">
+        <img
+            src="~assets/img/profile/suggest/suggest_success.png"
+            alt="提交成功">
+      </div>
+      <div
+          class="suggest-success-page-info-container">
+        提交成功，我们会尽快处理
+      </div>
+      <div
+          @click="toOtherPage"
+          class="suggest-success-page-btn">
+        我知道了
+      </div>
     </div>
-    <div class="suggest-success-page-info-container">提交成功，我们会尽快处理</div>
-    <div @click="toOtherPage" class="suggest-success-page-btn">我知道了</div>
   </div>
 </template>
 
 <script>
 export default {
   name: "SuggestSuccess",
-  methods:{
-    toOtherPage(){
+  methods: {
+    toOtherPage() {
       this.$router.replace('/profile')
     }
   }
 }
 </script>
 
-<style scoped>
-.suggest-success-page {
+<style
+    scoped>
+#suggest-success-page {
   width: 100vw;
   height: 100vh;
-  position: absolute;
-  background: white;
-  z-index: 10;
+  position: relative;
+  z-index: 999;
+  background: #ffffff;
 }
 
 .suggest-success-page-img-container {

@@ -7,11 +7,11 @@
       </div>
       <div>- 详细描述</div>
       <div>
-        <textarea v-model="problemDetail" placeholder="请输入..."></textarea>
+        <textarea @blur="rollTop" v-model="problemDetail" placeholder="请输入..."></textarea>
       </div>
       <div>- 联系方式</div>
       <div>
-        <input v-model="mobile" placeholder="请输入..." type="text">
+        <input @blur="rollTop" v-model="mobile" placeholder="请输入..." type="text">
       </div>
       <div @click="saveSuggest" class="suggest-page-btn">立即提交</div>
     </div>
@@ -30,6 +30,10 @@ name: "SuggestPage",
     }
   },
   methods:{
+    rollTop() {
+      window.scrollTo(0, 0)
+      this.judgeCash();
+    },
     saveSuggest(){
       //TODO 发送网络请求
       console.log(this.currentProblemIndex,this.problemDetail,this.mobile)
