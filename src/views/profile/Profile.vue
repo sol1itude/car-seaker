@@ -4,8 +4,9 @@
       <router-view/>
       <div class="profile-header-container">
         <div>
-          <img src="~assets/img/profile/header.jpg" alt="头像">
+          <img :src="$store.state.userInfo.headimgurl" alt="头像">
         </div>
+<!--TODO 获取微信昵称-->
         <div>微信昵称</div>
         <div @click="toOtherPage('/myprofile')">
           <img src="~assets/img/common/arrow_right_white.png" alt="查看">
