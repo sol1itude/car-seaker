@@ -1,4 +1,4 @@
-# car-seaker
+# car-seeker
  
 ## Project setup
 ```
