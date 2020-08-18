@@ -13,11 +13,7 @@
 
 <script>
 
-//import {
-//  getOpenId,
-//  getUserInfo
-//} from "network/common";
-import constParams from "@/common/constParams";
+import wx from 'weixin-js-sdk';
 
 export default {
   name: "Home",

@@ -47,9 +47,11 @@ export default {
                 
                 getUserInfo(openid)
                     .then(json => {
+                      let url=window.location.href;
                       this.$store.commit('setUserInfo', json.data);
                       this.$store.commit('setLogin', 1);
-                      
+                      //TODO 重写url 利用state跳转页面 重写导致wxjs签名失败？
+                      //history.replaceState({},'',(url.substr(0,url.indexOf('?'))+'#'+urlParams.state))
                       this.$router.push('/'+this.targetPage)
                     })
               })

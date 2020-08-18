@@ -1,9 +1,10 @@
 import {request} from "./request";
+import constParams from "@/common/constParams";
 
 //获取url参数
 export function getUrlParams() {
   let url = window.location.href;
-  let paramsStr = url.substr(url.indexOf('?') + 1);
+  let paramsStr = url.substr(url.indexOf('?') + 1, (url.indexOf('#')-url.indexOf('?')-1));
   let params = paramsStr.split('&');
   let paramMap = {};
   params.forEach(val => {
@@ -14,16 +15,9 @@ export function getUrlParams() {
 }
 
 //根据code获取openid
-//export function getOpenId(code) {
-//  return fetch('http://yingyanchaxun.com/api/search_vehicle_index.php?s=/Home/User/getopenid&code=' + code,
-//      {
-//        method: 'get',
-//        mode: 'cors',
-//      })
-//}
 export function getOpenId(code) {
   return request({
-    url: 'http://yingyanchaxun.com/api/search_vehicle_index.php?s=/Home/User/getopenid&code=' + code,
+    url: constParams.baseUrl+'?s=/Home/User/getopenid&code=' + code,
     method: 'get'
   })
 }
@@ -31,8 +25,20 @@ export function getOpenId(code) {
 //根据openid获取用户信息
 export function getUserInfo(openid) {
   return request({
-    url:'http://yingyanchaxun.com/api/search_vehicle_index.php?s=/Home/User/login&openid=' +openid,
+    url:constParams.baseUrl+'?s=/Home/User/login&openid=' +openid,
     method: 'get',
+  })
+}
+
+//获取jssdk签名信息
+export function getJsSdkSign(url){
+  return request({
+    url:'http://yingyanchaxun.com/api/search_vehicle_index.php',
+    params:{
+        s:'/Home/Jssdk/getSignPackage',
+        url:url
+    },
+    method:'get'
   })
 }
 

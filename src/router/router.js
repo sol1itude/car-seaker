@@ -139,6 +139,7 @@ const router = new VueRouter({
 
 //判断登录状态
 router.beforeEach((to, from, next) => {
+  //TODO 判断登录状态 开发阶段关闭
   //let login = router.app.$options.store.state.login;
   //console.log(to.path)
   ////1.判断登录状态
@@ -160,6 +161,7 @@ router.beforeEach((to, from, next) => {
   //    })
   //  }
   //}
+  console.log(to);
 
   document.title = to.meta.title;
   // TODO 判断是否微信浏览器(发布后放开)

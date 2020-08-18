@@ -12,8 +12,6 @@ export default {
 
   },
   mounted() {
-    console.log('注册过推广？',!this.$store.state.idAuthenticate);
-
     //if(false){
     if(!confirm('是否注册过推广？')){
       this.$router.replace('/promotion/register')

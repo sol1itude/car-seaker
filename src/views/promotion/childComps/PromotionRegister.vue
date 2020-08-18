@@ -175,11 +175,13 @@ export default {
   background-image: url("~assets/img/promotion/register/promotion_register_background.jpg");
   background-position: center;
   background-repeat: no-repeat;
-  
+  background-color: #f8f8f8;
   background-attachment: fixed;
   background-size: 100% 100%;
   width: 100%;
-  height: 100%;
+  height: 100vh;
+  position: relative;
+  z-index: 999;
   text-align: center;
 }
 
@@ -202,7 +204,7 @@ export default {
   left: 25px;
   right: 25px;
   height: 73.07vw;
-  bottom: 26.67vw;
+  bottom: 13.33vw;
   text-align: center;
   display: flex;
   display: -webkit-flex;
