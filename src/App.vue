@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <keep-alive exclude="Promotion">
+    <keep-alive exclude="Promotion,SuggestPage">
       <router-view  id="main-page-routerview"/>
     </keep-alive>
     <div class="main-tab-bar">

@@ -6,7 +6,6 @@ import VueRouter
 import {judgeUserAgent} from 'common/constUtils'
 import constUrls
   from "@/common/constUrls";
-
 Vue.use(VueRouter)
 
 const Home = () => import('views/home/Home');
@@ -21,6 +20,10 @@ const CashOutRecords = () => import('views/promotion/childComps/CashOutRecords')
 const PromotionPost = () => import('views/promotion/childComps/PromotionPost');
 const ProfitRecords = () => import('views/promotion/childComps/ProfitRecords');
 const Login = () => import('views/login/Login');
+const MyProfile = () => import('views/profile/childComps/MyProfile');
+const ContactUs = () => import('views/profile/childComps/ContactUs');
+const SuggestPage = () => import('views/profile/childComps/SuggestPage');
+const SuggestSuccess = () => import('views/profile/childComps/SuggestSuccess');
 const routes = [
   {
     path: '',
@@ -128,12 +131,44 @@ const routes = [
     meta: {
       title: '我的'
     },
-    component: Profile
+    component: Profile,
+  },
+  {
+    path: '/myprofile',
+    name: 'MyProfile',
+    meta: {
+      title: '个人资料'
+    },
+    component: MyProfile
+  },
+  {
+    path: '/contactus',
+    name: 'ContactUs',
+    meta: {
+      title: '联系我们'
+    },
+    component: ContactUs
+  },
+  {
+    path: '/suggestpage',
+    name: 'SuggestPage',
+    meta: {
+      title: '意见反馈'
+    },
+    component: SuggestPage
+  },
+  {
+    path: '/suggestsuccess',
+    name: 'SuggestSuccess',
+    meta: {
+      title: '意见反馈'
+    },
+    component: SuggestSuccess
   }
 ]
 
 const router = new VueRouter({
-   //mode: 'history',
+  //mode: 'history',
   routes
 })
 

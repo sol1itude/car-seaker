@@ -9,3 +9,7 @@
 .wx-picker-custom .weui-btn.weui-btn_primary.weui-picker__btn{
   background: #716dff;
 }
+.my-custom-picker .weui-btn.weui-btn_primary.weui-picker__btn{
+  background-color: #716dff;
+  font-weight: 200;
+}

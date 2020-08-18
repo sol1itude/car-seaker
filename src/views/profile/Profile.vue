@@ -1,12 +1,13 @@
 <template>
   <div>
     <div id="profile" @touchmove.prevent>
+      <router-view/>
       <div class="profile-header-container">
         <div>
           <img src="~assets/img/profile/header.jpg" alt="头像">
         </div>
         <div>微信昵称</div>
-        <div>
+        <div @click="toOtherPage('/myprofile')">
           <img src="~assets/img/common/arrow_right_white.png" alt="查看">
         </div>
       </div>
@@ -20,11 +21,11 @@
                                  :image="require('assets/img/profile/promotion.png')"
                                  :text="'推广赚钱'"
                                  :arrow="require('assets/img/common/arrow_right_gray.png')"/>
-        <PromotionManageItemList @click.native="toOtherPage('/promotion/cashoutrecords')"
+        <PromotionManageItemList @click.native="toOtherPage('/suggestpage')"
                                  :image="require('assets/img/profile/suggest.png')"
                                  :text="'意见反馈'"
                                  :arrow="require('assets/img/common/arrow_right_gray.png')"/>
-        <PromotionManageItemList @click.native="showMessage('推广规则')"
+        <PromotionManageItemList @click.native="toOtherPage('/contactus')"
                                  :image="require('assets/img/profile/contact.png')"
                                  :text="'联系我们'"
                                  :arrow="require('assets/img/common/arrow_right_gray.png')"/>
@@ -143,6 +144,8 @@ export default {
 .profile-header-container > div:nth-child(3) {
   right: 0;
   vertical-align: middle;
+  width: 50px;
+  text-align: right;
   line-height: 44px;
 }
 
