@@ -73,9 +73,10 @@ export default {
   },
  activated() {
    let fromProfile = this.$route.query.fromProfile;
-   this.currentIndex = fromProfile;
    console.log('toTarget',fromProfile)
-   this.$refs.tabControl.activeIndex=fromProfile;
+   console.log(typeof fromProfile)
+   this.$refs.tabControl.activeIndex=parseInt(fromProfile);
+   this.currentIndex=parseInt(fromProfile)
  }
 }
 </script>
