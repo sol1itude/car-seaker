@@ -1,7 +1,7 @@
 <template>
   <div class="order-container" @touchmove.prevent>
     <div class="order-head-container">
-      <TabControl @displayChanged="displayChanged"></TabControl>
+      <TabControl @displayChanged="displayChanged" ref="tabControl"></TabControl>
     </div>
     <div class="order-body-data-container">
       <scroll :probe-type="3"
@@ -9,11 +9,12 @@
               ref="scroll"
               @reachBottom="loadMoreGoods"
               @scroll="scrollPositionChange">
-        <OrderListItem @showSingleMessage="showSingleMessageMethod" v-for="item in displayOrders" :order="item"></OrderListItem>
+        <OrderListItem @showSingleMessage="showSingleMessageMethod" v-for="item in displayOrders"
+                       :order="item"></OrderListItem>
       </scroll>
     </div>
-    <div v-if="showSingleMessage"  class="single-message-container">
-      <SingleLineMessageToast>{{singleMessage}}</SingleLineMessageToast>
+    <div v-if="showSingleMessage" class="single-message-container">
+      <SingleLineMessageToast>{{ singleMessage }}</SingleLineMessageToast>
     </div>
   </div>
 </template>
@@ -38,9 +39,9 @@ export default {
         {type: 1, status: 2, vin: 'ATNITM0362JS12837', time: 1593205117204, count: 27.00},
         {type: 3, status: 1, vin: 'ATNITM0362JS26123', time: 1593205117204, count: 9.9}
       ],
-      showSingleMessage:false,
-      singleMessage:'',
-      timer:-1
+      showSingleMessage: false,
+      singleMessage: '',
+      timer: -1
     }
   },
   methods: {
@@ -54,22 +55,28 @@ export default {
       this.currentIndex = val;
       console.log(this.currentIndex)
     },
-    showSingleMessageMethod(val){
-      this.singleMessage=val;
-      this.showSingleMessage=true;
+    showSingleMessageMethod(val) {
+      this.singleMessage = val;
+      this.showSingleMessage = true;
       clearTimeout(this.timer);
-      this.timer = setTimeout(()=>{
-        this.showSingleMessage=false
-      },1000)
+      this.timer = setTimeout(() => {
+        this.showSingleMessage = false
+      }, 1000)
     }
   },
   computed: {
     displayOrders() {
-      return this.currentIndex===0?this.orders:this.orders.filter(item=>{
-        return item.status===(this.currentIndex-1);
+      return this.currentIndex === 0 ? this.orders : this.orders.filter(item => {
+        return item.status === (this.currentIndex - 1);
       })
     }
-  }
+  },
+ activated() {
+   let fromProfile = this.$route.query.fromProfile;
+   this.currentIndex = fromProfile;
+   console.log('toTarget',fromProfile)
+   this.$refs.tabControl.activeIndex=fromProfile;
+ }
 }
 </script>
 
