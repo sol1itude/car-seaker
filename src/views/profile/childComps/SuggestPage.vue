@@ -139,14 +139,16 @@ name: "SuggestPage",
   height: 56px;
   margin-top: 20px;
   margin-left: 20px;
+  background: #f8f8f8;
 }
 .suggest-page>div:nth-child(6)>input{
   width: 100%;
-  height: 100%;
-  line-height: 56px;
+  height: 14px;
+  line-height: 14px;
   font-size: 14px;
   border: none;
   outline: none;
+  margin-top: 20px;
   background: #f8f8f8;
   border-radius: 4px;
   padding-left: 12px;
