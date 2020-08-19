@@ -144,7 +144,7 @@ export default {
 
 .profile-header-container > div:nth-child(3) {
   right: 0;
-  vertical-align: middle;
+  vertical-align: top;
   width: 50px;
   text-align: right;
   line-height: 44px;
@@ -152,7 +152,7 @@ export default {
 
 .profile-header-container > div:nth-child(3)>img {
   width: 10px;
-  vertical-align: middle;
+  vertical-align: text-top;
 }
 
 .profile-order-container{
