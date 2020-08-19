@@ -72,11 +72,18 @@ export default {
     }
   },
  activated() {
+  
    let fromProfile = this.$route.query.fromProfile;
    let index = (typeof fromProfile ==='undefined')?0:parseInt(fromProfile)
    this.$refs.tabControl.activeIndex=index
    this.currentIndex=index
- }
+ },
+  watch:{
+    currentIndex(){
+      //this.$refs.scroll.refreshHeight();
+      this.$refs.scroll.backTop(0,0,0);
+    }
+  }
 }
 </script>
 
