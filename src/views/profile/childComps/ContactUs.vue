@@ -7,7 +7,7 @@
         <div>
           <div>
             <img
-                src="~assets/img/profile/contact.png">
+                src="~assets/img/profile/contactus/phone.png">
           </div>
           <div>
             座机
@@ -19,7 +19,7 @@
         <div>
           <div>
             <img
-                src="~assets/img/profile/contact.png">
+                src="~assets/img/profile/contactus/custom_service.png">
           </div>
           <div>
             客服
@@ -34,7 +34,7 @@
         <div>
           <div>
             <img
-                src="~assets/img/profile/contact.png">
+                src="~assets/img/profile/contactus/business.png">
           </div>
           <div>
             商务
@@ -49,7 +49,7 @@
         <div>
           <div>
             <img
-                src="~assets/img/profile/contact.png">
+                src="~assets/img/profile/contactus/email.png">
           </div>
           <div>
             邮箱
