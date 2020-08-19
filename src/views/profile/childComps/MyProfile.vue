@@ -1,70 +1,49 @@
 <template>
-  <div>
-    <div
-        class="my-profile"
-        @touchmove.prevent>
-      <div
-          class="my-profile-name-container">
+  <div @touchmove.prevent>
+    <div class="my-profile" @touchmove.prevent>
+      <div class="my-profile-name-container">
         <div>
           姓名
         </div>
         <div>
-          <input @blur="judgeInput(1)"
-                 placeholder="请输入"
-                 type="text"
-                 v-model="name"
-          >
+          <input @blur="judgeInput(1)" placeholder="请输入" type="text" v-model="name">
         </div>
       </div>
-      <div
-          class="my-profile-mobile-container">
+      <div class="my-profile-mobile-container">
         <div>
           手机号
         </div>
         <div>
-          <input
-              v-model="mobile"
-              placeholder="请输入"
-              type="text">
+          <input v-model="mobile" placeholder="请输入" type="text">
         </div>
       </div>
-      <div
-          class="my-profile-location-container">
+      <div class="my-profile-location-container">
         <div>
           所属区域
         </div>
-        <div
-            @click="showLocationPicker">
+        <div @click="showLocationPicker">
           <div>
             {{ getLocation }}
           </div>
           <div>
-            <img
-                src="~assets/img/common/arrow_right_gray.png"
-                alt=">">
+            <img src="~assets/img/common/arrow_right_gray.png" alt=">">
           </div>
         </div>
       </div>
-      <div
-          class="my-profile-career-container">
+      <div class="my-profile-career-container">
         <div>
           是否从事二手车行业
         </div>
-        <div
-            @click="showCareerPicker">
+        <div @click="showCareerPicker">
           <div>
             {{ getCareer }}
           </div>
           <div>
-            <img
-                src="~assets/img/common/arrow_right_gray.png"
-                alt=">">
+            <img src="~assets/img/common/arrow_right_gray.png" alt=">">
           </div>
         </div>
       </div>
-      <div
-          @click="saveProfileEdit"
-          class="my-profile-btn">
+      <div @click="saveProfileEdit" class="my-profile-btn">
         立即提交
       </div>
       <div v-if="showSingleMessage" class="single-message-container">
@@ -208,7 +187,7 @@ export default {
   position: relative;
   width: 100vw;
   height: 100vh;
-  z-index: 999;
+  z-index: 99;
   background: #f8f8f8;
 }
 
