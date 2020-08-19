@@ -175,27 +175,27 @@ const router = new VueRouter({
 //判断登录状态
 router.beforeEach((to, from, next) => {
   //TODO 判断登录状态 开发阶段关闭
-  //let login = router.app.$options.store.state.login;
-  //console.log(to.path)
-  ////1.判断登录状态
-  //if (to.path === '/login') {
-  //  next();
-  //} else {
-  //
-  //  if (login) {
-  //    //2.已登录，跳转
-  //    console.log('已登录，跳转')
-  //    next();
-  //  } else {
-  //    //3.未登录,跳转登录授权页面
-  //    router.replace({
-  //      path: '/login',
-  //      query: {
-  //        target: to.path.indexOf('/'+1)
-  //      }
-  //    })
-  //  }
-  //}
+  let login = router.app.$options.store.state.login;
+  console.log(to.path)
+  //1.判断登录状态
+  if (to.path === '/login') {
+    next();
+  } else {
+
+    if (login) {
+      //2.已登录，跳转
+      console.log('已登录，跳转')
+      next();
+    } else {
+      //3.未登录,跳转登录授权页面
+      router.replace({
+        path: '/login',
+        query: {
+          target: to.path.indexOf('/'+1)
+        }
+      })
+    }
+  }
   console.log(to);
 
   document.title = to.meta.title;
