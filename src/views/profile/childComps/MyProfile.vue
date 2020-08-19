@@ -9,10 +9,11 @@
           姓名
         </div>
         <div>
-          <input
-              placeholder="请输入"
-              type="text"
-              name="name">
+          <input @blur="judgeInput(1)"
+                 placeholder="请输入"
+                 type="text"
+                 v-model="name"
+          >
         </div>
       </div>
       <div
@@ -22,9 +23,9 @@
         </div>
         <div>
           <input
+              v-model="mobile"
               placeholder="请输入"
-              type="text"
-              name="name">
+              type="text">
         </div>
       </div>
       <div
@@ -35,7 +36,7 @@
         <div
             @click="showLocationPicker">
           <div>
-            {{getLocation}}
+            {{ getLocation }}
           </div>
           <div>
             <img
@@ -52,7 +53,7 @@
         <div
             @click="showCareerPicker">
           <div>
-            {{getCareer}}
+            {{ getCareer }}
           </div>
           <div>
             <img
@@ -66,70 +67,78 @@
           class="my-profile-btn">
         立即提交
       </div>
+      <div v-if="showSingleMessage" class="single-message-container">
+        <SingleLineMessageToast>{{ singleMessage }}</SingleLineMessageToast>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import SingleLineMessageToast from "@/components/common/messageToast/SingleLineMessageToast";
+
 export default {
   name: "MyProfile",
+  components: {SingleLineMessageToast},
   data() {
     return {
       career: null,
       location: [],
+      singleMessage: '',
+      showSingleMessage: false,
+      timer: -1,
+      inputting: false,
+      name: '',
+      mobile: '',
       locations: [
-        {
-          label: '北京',
-          value: 0,
-          children: [
-            {
-              label: '海淀区',
-              value: 1
-            },
-            {
-              label: '朝阳区',
-              value: 2
-            }
-          ]
-        },
+        {label: '北京', value: 0, children: [{label: '海淀区', value: 1}, {label: '朝阳区', value: 2}]},
         {
           label: '天津',
           value: 1,
-          children: [
-            {
-              label: '南开区',
-              value: 1,
-              disabled: true // 不可用
-            },
-            {
-              label: '河西区',
-              value: 2
-            },
-            {
-              label: '河北区',
-              value: 3
-            }
-          ]
+          children: [{label: '南开区', value: 1, /* 设置不可用 disabled: true*/}, {label: '河西区', value: 2}, {
+            label: '河北区',
+            value: 3
+          }]
         },
-        {
-          label: '河北',
-          value: 3,
-          children: [
-            {
-              label: '石家庄',
-              value: 1
-            },
-            {
-              label: '保定',
-              value: 2
-            }
-          ]
-        }
+        {label: '河北', value: 3, children: [{label: '石家庄', value: 1}, {label: '保定', value: 2}]}
       ]
     }
   },
   methods: {
-
+    
+    judgeInput(val) {
+      switch (val) {
+        case 1:
+          if (this.name.length === 0) {
+            this.showSingleMessageMethod('请输入正确的姓名');
+            return false;
+          } else {
+            return true;
+          }
+        case 2:
+          if (!this.regxMobile()) {
+            this.showSingleMessageMethod('请输入正确的手机号码');
+            return false;
+          } else {
+            return true;
+          }
+        case 3:
+          if (this.location.length === 0) {
+            this.showSingleMessageMethod('请选择正确的地区');
+            return false;
+          } else {
+            return true;
+          }
+        case 4:
+          if (this.career === null) {
+            this.showSingleMessageMethod('请选择行业');
+            return false;
+          } else {
+            return true;
+          }
+      }
+    },
+    
     //TODO 数据校验
     regxMobile() {
       let mobileRegx = /^1[3456789]\d{9}$/;
@@ -143,7 +152,7 @@ export default {
         defaultValue: [1, 3],
         onConfirm: function (result) {
           console.log(result);
-          _this.location.splice(0,20)
+          _this.location.splice(0, 20)
           _this.location.push(...result)
         },
         title: '所在区域'
@@ -152,16 +161,8 @@ export default {
     showCareerPicker() {
       let _this = this;
       this.$weui.picker(
-          [
-            {
-              label: '是',
-              value: 1,
-            },
-            {
-              label: '否',
-              value: 0,
-            }
-          ], {
+          [{label: '是', value: 1,}, {label: '否', value: 0,}],
+          {
             className: 'my-custom-picker',
             container: 'body',
             defaultValue: [0],
@@ -172,9 +173,20 @@ export default {
             title: '是否从事二手车行业'
           })
     },
+    showSingleMessageMethod(val) {
+      this.singleMessage = val;
+      this.showSingleMessage = true;
+      clearTimeout(this.timer);
+      this.timer = setTimeout(() => {
+        this.showSingleMessage = false
+      }, 1000)
+    },
     saveProfileEdit() {
+      if (!(this.judgeInput(1) && this.judgeInput(2) && this.judgeInput(3) && this.judgeInput(4))) {
+        return;
+      }
       //TODO 发送网络请求
-      console.log(this.location)
+      alert('发送保存信息请求')
       this.$router.push('/profile')
     }
   },
@@ -183,13 +195,15 @@ export default {
       return this.career == null ? '请选择' : this.career ? '是' : '否'
     },
     getLocation() {
-      return this.location.length === 0?'请选择':(this.location[0].label+'-'+this.location[1].label)
+      return this.location.length === 0 ? '请选择' : (this.location[0].label + '-' + this.location[1].label)
     }
+  },
+  activated() {
+    //todo 获取用户信息
   }
 }
 </script>
-<style
-    scoped>
+<style scoped>
 .my-profile {
   position: relative;
   width: 100vw;
@@ -368,5 +382,14 @@ export default {
   color: #ffffff;
   font-size: 14px;
   left: calc(50% - 120px);
+}
+
+.single-message-container {
+  position: fixed;
+  width: 100%;
+  text-align: center;
+  top: 20vh;
+  height: 54px;
+  z-index: 999;
 }
 </style>
