@@ -101,7 +101,7 @@ export default {
 
 <style scoped>
 #profile {
-  background: #f8f8f8 url("~assets/img/promotion/cashout/cash_out_background.png") no-repeat fixed top;
+  background: #f8f8f8 url("~assets/img/profile/profile_background.jpg") no-repeat fixed top;
   background-size: 100%;
   width: 100%;
   height: 100%;
