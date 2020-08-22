@@ -11,7 +11,7 @@
               alt="头像">
         </div>
         <div :style="{top:calcSize(35)+'px'}" class="post-message-container">
-          你好，我是{{ wxName }},向你推荐[365查车]
+          你好，我是{{ $store.state.userInfo.nickname }},向你推荐[365查车]
         </div>
         <div :style="{top:calcSize(81.5)+'px',height:calcSize( 160)+'px'}" class="post-qrcode-container">
           <div :style="{width:calcSize( 160)+'px',left:(windowWidth/2-20-calcSize(160)/2)+'px'}">
