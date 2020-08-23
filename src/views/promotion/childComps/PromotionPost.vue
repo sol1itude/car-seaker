@@ -74,25 +74,6 @@ export default {
       ++this.currentPicIndex === 3 ? this.currentPicIndex = 0 : null
     },
     getPromotionPost() {
-      
-      
-      /*
-      *  * @example
- * weui.dialog({
- *     title: 'dialog标题',
- *     content: 'dialog内容',
- *     className: 'custom-classname',
- *     buttons: [{
- *         label: '取消',
- *         type: 'default',
- *         onClick: function () { alert('取消') }
- *     }, {
- *         label: '确定',
- *         type: 'primary',
- *         onClick: function () { alert('确定') }
- *     }]
- * });
-      * */
       //定义微信提示
      let toast =  this.$weui.dialog({
         title: '获取提示',
