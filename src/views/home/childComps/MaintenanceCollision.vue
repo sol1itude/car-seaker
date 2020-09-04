@@ -62,7 +62,7 @@ export default {
     methods: {
         fetch(){
             let loading = this.$weui.loading('加载中...');
-            this.$axios.post('/api/search_vehicle_index.php?s=/Home/Report/getMaintenanceReport', this.qs.stringify({
+            this.$axios.post('/search_vehicle_index.php?s=/Home/Report/getMaintenanceReport', this.qs.stringify({
                 reportid: this.$route.query.reportid
             }))
             .then( res => {

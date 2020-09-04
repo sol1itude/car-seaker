@@ -90,8 +90,8 @@ export default {
     },
     methods: {
         fetch(){
-            this.$axios.post('/api/search_vehicle_index.php?s=/Home/Report/GetClaimReport',{
-                reportid: 1
+            this.$axios.post('/search_vehicle_index.php?s=/Home/Report/GetClaimReport',{
+                reportid: this.$route.query.reportid
             })
             .then( res => {
                 this.claim = res.data.data.claimRecord;

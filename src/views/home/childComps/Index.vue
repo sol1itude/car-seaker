@@ -228,7 +228,7 @@ export default {
     methods: {
         // 获取城市列表
         GetCbsCities(){
-            this.$axios.post('/api/search_vehicle_index.php?s=/Home/Report/GetCbsCities')
+            this.$axios.post('/search_vehicle_index.php?s=/Home/Report/GetCbsCities')
             .then( res => {
                 this.cityArray = res.data.data;
                 for(let i=0;i<this.cityArray.length;i++){
@@ -332,7 +332,7 @@ export default {
                 this.myToast('请选择过户次数')
             }else{
                 let reportid = 1;
-                this.$axios.post('/api/search_vehicle_index.php?s=/Home/Report/buyCbsPreciseReport', this.qs.stringify({
+                this.$axios.post('/search_vehicle_index.php?s=/Home/Report/buyCbsPreciseReport', this.qs.stringify({
                     model_id: this.model,
                     city_id: this.cityId,
                     vin: this.vincode,

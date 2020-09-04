@@ -59,7 +59,7 @@ export default {
     methods: {
         fetchBrand(){
             let loading = this.$weui.loading('加载中...');
-            this.$axios.post('/api/search_vehicle_index.php?s=/Home/Report/getCbsBrand')
+            this.$axios.post('/search_vehicle_index.php?s=/Home/Report/getCbsBrand')
             .then( res => {
                 this.brand = res.data.data;
                 this.brandActive
@@ -72,7 +72,7 @@ export default {
 
         fetchSeries(seriesId, index){
             let loading = this.$weui.loading('加载中...');
-            this.$axios.post('/api/search_vehicle_index.php?s=/Home/Report/getCbsSeries', this.qs.stringify({
+            this.$axios.post('/search_vehicle_index.php?s=/Home/Report/getCbsSeries', this.qs.stringify({
                 brand_id: seriesId
             }))
             .then( res => {
@@ -88,7 +88,7 @@ export default {
         },
         fetchModels(modelId, index){
             let loading = this.$weui.loading('加载中...');
-            this.$axios.post('/api/search_vehicle_index.php?s=/Home/Report/getCbsModels', this.qs.stringify({
+            this.$axios.post('/search_vehicle_index.php?s=/Home/Report/getCbsModels', this.qs.stringify({
                 series_id: modelId
             }))
             .then( res => {
